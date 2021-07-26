@@ -11,6 +11,7 @@ It uses:
 - [ESLint](https://eslint.org) for linting.
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
+- [API](https://www.gov.uk/api/content/foreign-travel-advice) for fetching GOVUK data
 
 
 ### User Stories
