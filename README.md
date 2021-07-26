@@ -1,6 +1,19 @@
-# travel_bug
+## TRAVEL BUG
 
-## User Stories
+For our final project, we decided to create a web application, Travel Bug, that will enable users to view travel restrictions to potential holiday destinations, so they are able to make informed choices regarding future trips.
+
+It uses:
+- [Express](https://expressjs.com/) web framework for Node.js.
+- [Nodemon](https://nodemon.io/) to reload the server automatically.
+- [Handlebars](https://handlebarsjs.com/) to render view templates.
+- [Mongoose](https://mongoosejs.com) to model objects in MongoDB.
+- [ESLint](https://eslint.org) for linting.
+- [Jest](https://jestjs.io/) for testing.
+- [Cypress](https://www.cypress.io/) for end-to-end testing.
+
+##### Team members: Anita, Ehelsan, Emma, Kelvin
+
+### User Stories
 
 #### Explore
 
