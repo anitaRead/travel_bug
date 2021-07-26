@@ -1,5 +1,7 @@
-var testController = {
+var TestController = {
     Index: function(req, res) {
-        res.render('test', { title: 'Test' });
+        res.render('search/test', { title: 'Test' });
       },
 }
+
+module.exports = TestController;

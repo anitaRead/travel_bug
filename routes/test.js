@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var testController = require('../controllers/test');
+var TestController = require('../controllers/test');
 
-router.get('/', testController.Index);
+router.get('/', TestController.Index);
 
 module.exports = router;
