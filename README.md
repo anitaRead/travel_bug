@@ -1,4 +1,5 @@
 ## TRAVEL BUG
+##### Team members: Anita, Ehelsan, Emma, Kelvin
 
 For our final project, we decided to create a web application, Travel Bug, that will enable users to view travel restrictions to potential holiday destinations, so they are able to make informed choices regarding future trips.
 
@@ -11,7 +12,6 @@ It uses:
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
-##### Team members: Anita, Ehelsan, Emma, Kelvin
 
 ### User Stories
 
