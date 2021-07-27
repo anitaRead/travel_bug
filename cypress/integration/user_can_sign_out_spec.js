@@ -11,7 +11,7 @@ describe('Home page', function() {
       cy.get('#sign-in-form').find('[name = "password"]').type('coach4lyf');
       cy.get('#sign-in-form').submit();
 
-      cy.contains('Timeline');
+      cy.contains('Travel Bug');
       cy.get('#sign-out-button').click();
 
       cy.get('#sign-up-form').should('have.id', 'sign-up-form');

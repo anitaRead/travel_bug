@@ -35,6 +35,7 @@ var HomeController = {
       res.status(201).redirect('/sessions');
     });
   },
+
   Signout: function(req, res) {
     User.find(function(err, users) {
       if(err) { throw err }
@@ -49,4 +50,5 @@ var HomeController = {
     });
   },
 };
+
 module.exports = HomeController;
