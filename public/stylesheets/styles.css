@@ -1,0 +1,36 @@
+body {
+    overflow-x: hidden;
+}
+
+#red-list {
+    display: none;
+    margin: 1% 6%;
+}
+
+#red-list .list-item {
+    margin: 1% 3%;
+    border-bottom: 0.25px solid #d3d3d3;
+    border-right: 0.25px solid #d3d3d3;
+}
+
+#amber-list {
+    display: none;
+    margin: 1% 6%;
+}
+
+#amber-list .list-item {
+    margin: 1% 3%;
+    border-bottom: 0.25px solid #d3d3d3;
+    border-right: 0.25px solid #d3d3d3;
+}
+
+#green-list {
+    display: none;
+    margin: 1% 6%;
+}
+
+#green-list .list-item {
+    margin: 1% 3%;
+    border-bottom: 0.25px solid #d3d3d3;
+    border-right: 0.25px solid #d3d3d3;
+}

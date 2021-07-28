@@ -1,19 +1,38 @@
-<h1 id="title">COUNTRIES</h1>
 
-<div class="row">
-    <div class="col-md-4">
-        {{#each redList}}
-            <p>{{this}}</p>
-        {{/each}} 
+    <h1 class="m-5 explore-heading">Explore</h1>
+
+    <div class="d-flex row mb-5">
+        <div class="col-md-4 p-1">
+            <button type="button" id="red-button" class="btn btn-danger px-4">Red</button>
+        </div>
+        <div class="col-md-4 p-1">
+            <button type="button" id="amber-button" class="btn btn-warning px-4">Amber</button>
+        </div>
+        <div class="col-md-4 p-1">
+            <button type="button" id="green-button" class="btn btn-success px-4">Green</button>
+        </div>
     </div>
-    <div class="col-md-4">
-       {{#each amberList}}
-            <p>{{this}}</p>
-        {{/each}} 
+
+    <div id="red-list" class="shadow card">
+        <div class="p-3 rounded row justify-content-center">
+            {{#each redList}}
+                <div class="list-item col-sm-3">{{this}}</div>
+            {{/each}} 
+        </div>
+    </div>  
+
+    <div id="amber-list" class="shadow card">
+        <div class="p-3 rounded row justify-content-center">
+                {{#each amberList}}
+                    <div class="list-item mt-3 col-sm-3">{{this}}</div>
+                {{/each}} 
+        </div>
     </div>
-    <div class="col-md-4">
-        {{#each greenList}}
-            <p>{{this}}</p>
-        {{/each}} 
+
+    <div id="green-list" class="shadow card">
+            <div class="p-3 rounded row justify-content-center">
+                {{#each greenList}}
+                    <div class="list-item mt-3 col-sm-3">{{this}}</div>
+                {{/each}} 
+            </div>
     </div>
-</div>
