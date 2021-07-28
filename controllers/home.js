@@ -32,7 +32,7 @@ var HomeController = {
           if(users[i].password === password) {
             users[i].active = true;
             users[i].save();
-            return res.status(201).redirect('/');
+            return res.status(201).redirect('/signup');
           } 
         } 
       }
