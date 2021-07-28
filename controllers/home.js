@@ -1,6 +1,8 @@
 var User = require('../models/user');
-// var https = require('https');
+var https = require('https');
 // var countryList = require('country-list');
+var jsdom = require("jsdom");
+
 
 
 var HomeController = {
@@ -52,43 +54,46 @@ var HomeController = {
     });
   },
 
-  // List: function(req, res) {
+  List: function(req, res) {
 
-  //   var url = "https://www.gov.uk/api/content/guidance/red-amber-and-green-list-rules-for-entering-england";
+    var url = 'https://www.gov.uk/api/content/guidance/red-amber-and-green-list-rules-for-entering-england';
     
 
-    // https.get(url, function(response){
-    //   var result = "";
+    https.get(url, function(response){
+      var result = '';
       
-    //   response.on("data", function(data){
-    //     result += data;
-    //   })
+      response.on('data', function(data){
+        result += data;
+      })
 
-    //   response.on("end", function(){
-    //     var resultJSON = JSON.parse(result);
-    //     var pageData = resultJSON.details.body;
+      response.on('end', function(){
+        var resultJSON = JSON.parse(result);
+        var pageData = resultJSON.details.body;
 
-    //     pageData = pageData.replace(/(<([^>]+)>)/gi, "");
+        var dom = new jsdom.JSDOM(pageData);
+        var doc = dom.window.document;
 
-    //     var countriesRef = countryList.getNames();
+        function getCountries(content, tableNumber){
+          var countries = [];
+          var table = content.getElementsByTagName("table")[tableNumber];
+          var tableRows = table.getElementsByTagName("tbody")[0].children;
 
-    //     var redList = pageData.slice(830, 3260);
-    //     var filteredRedList = [];
+          for(var i=0; i<tableRows.length; i++){
+            countries.push(tableRows[i].firstElementChild.textContent);
+          }
 
-    //     for(var i=0; i<countriesRef.length; i++) {
-    //       var redCountry = redList.search(countriesRef[i]);
-    //       if(redCountry > -1) {
-    //         filteredRedList.push(countriesRef[i]);
-    //       }
-    //     }
+          return countries;
+        }
         
-    //     filteredRedList = filteredRedList.sort();
+        var redList = getCountries(doc, 0);
+        var amberList = getCountries(doc, 1);
+        var greenList = getCountries(doc, 2);
         
-    //     res.render('explore/index', { redListData: filteredRedList })
-    //   })
-    // })
+        res.render('explore/index', { redList: redList, amberList: amberList, greenList: greenList })
+      })
+    })
     
-  // },
+  },
 
   Logo: function(req, res) {
     res.render('home/logo');
