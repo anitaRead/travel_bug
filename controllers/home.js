@@ -49,6 +49,10 @@ var HomeController = {
       res.redirect('/');
     });
   },
+
+  Logo: function(req, res) {
+    res.render('home/logo');
+  }
 };
 
 module.exports = HomeController;
