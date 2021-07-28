@@ -6,6 +6,10 @@ var HomeController = {
     res.render('home/index', { title: 'Travel Bug' });
   },
 
+  SignupPage: function(req, res) {
+    res.render('home/signup');
+  },
+
   Create: function(req, res) {
     var user = new User(req.body);
     user.save(function(err) {
