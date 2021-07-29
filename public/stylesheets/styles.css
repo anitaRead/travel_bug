@@ -1,0 +1,82 @@
+body {
+    overflow-x: hidden;
+}
+
+#red-list {
+    display: none;
+    margin: 6% 6%;
+}
+
+#red-list .list-item {
+    margin: 1% 3%;
+    border-bottom: 0.25px solid #d3d3d3;
+    border-right: 0.25px solid #d3d3d3;
+}
+
+#amber-list {
+    display: none;
+    margin: 6% 6%;
+}
+
+#amber-list .list-item {
+    margin: 1% 3%;
+    border-bottom: 0.25px solid #d3d3d3;
+    border-right: 0.25px solid #d3d3d3;
+}
+
+#green-list {
+    display: none;
+    margin: 6% 6%;
+}
+
+#green-list .list-item {
+    margin: 1% 3%;
+    border-bottom: 0.25px solid #d3d3d3;
+    border-right: 0.25px solid #d3d3d3;
+}
+
+.explore-jumbotron {
+    height: 60vh;
+    background-image: url("../images/island.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.explore-jumbotron .container {
+    margin: 0 0 10% 2%;
+}
+
+.explore-heading {
+    font-size: 6rem;
+    font-weight: 600;
+    color: #000;
+}
+
+@media (max-width: 576px) { 
+    .explore-heading {
+        margin-top: 10%;
+        font-size: 4rem;
+        font-weight: 600;
+        color: #000;
+    }
+
+    .jumbotron .button-row {
+        margin-top: 45%;
+    }
+
+    .button-row {
+       justify-content: center;
+       padding: 2%;
+    }
+
+    #green-list {
+        margin-top: 17.5%;
+    }
+    #amber-list {
+        margin-top: 17.5%;
+    }
+    #red-list {
+        margin-top: 17.5%;
+    }
+}
