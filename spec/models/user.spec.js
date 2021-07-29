@@ -12,7 +12,7 @@ describe('User model', function(){
   });
 
   it('can create a user', function(done){
-    var user = new User({ username: 'anita', email: 'anita600@a.com', password: 'hello123', vaccination_status: 'undisclosed' });
+    var user = new User({ username: 'anita', email: 'anita600@a.com', password: 'hello123'});
 
     user.save(function(err){
       if(err) { console.log(err) } 
@@ -20,7 +20,7 @@ describe('User model', function(){
       User.find(function(err, user) {
         if(err) { console.log(err) }
         
-        expect(user[0]).toMatchObject({ username: 'anita', email: 'anita600@a.com', password: 'hello123', active: false, vaccination_status: 'undisclosed' });
+        expect(user[0]).toMatchObject({ username: 'anita', email: 'anita600@a.com', password: 'hello123', active: false, vaccination_status: 'unvaccinated' });
 
         done();
       });
@@ -30,7 +30,7 @@ describe('User model', function(){
   
   it('can sign in a user', function(done){
 
-    var user = new User({ username: 'kelvin', email: 'kelvin@example.com', password: 'nicolasturgeon1', vaccination_status: 'undisclosed' });
+    var user = new User({ username: 'kelvin', email: 'kelvin@example.com', password: 'nicolasturgeon1'});
 
     user.save(function(err){
       if(err) { console.log(err) } 
@@ -38,11 +38,11 @@ describe('User model', function(){
       User.find(function(err, user) {
         if(err) { console.log(err) }
 
-        expect(user[1]).toMatchObject({ username: 'kelvin', email: 'kelvin@example.com', password: 'nicolasturgeon1', active: false, vaccination_status: 'undisclosed' });
+        expect(user[1]).toMatchObject({ username: 'kelvin', email: 'kelvin@example.com', password: 'nicolasturgeon1', active: false, vaccination_status: 'unvaccinated' });
 
         user[1].active = true;
 
-        expect(user[1]).toMatchObject({ username: 'kelvin', email: 'kelvin@example.com', password: 'nicolasturgeon1', active: true, vaccination_status: 'undisclosed' });
+        expect(user[1]).toMatchObject({ username: 'kelvin', email: 'kelvin@example.com', password: 'nicolasturgeon1', active: true, vaccination_status: 'unvaccinated' });
 
         done();
       });
@@ -53,7 +53,7 @@ describe('User model', function(){
 
   it('can sign out a user', function(done){
 
-    var user = new User({ username: 'ehelsan', email: 'ehelsan@example.com', password: 'LOOOOOL', vaccination_status: 'undisclosed' });
+    var user = new User({ username: 'ehelsan', email: 'ehelsan@example.com', password: 'LOOOOOL' });
 
     user.save(function(err){
       if(err) { console.log(err) } 
@@ -63,11 +63,11 @@ describe('User model', function(){
 
         user[2].active = true;
 
-        expect(user[2]).toMatchObject({ username: 'ehelsan', email: 'ehelsan@example.com', password: 'LOOOOOL', active: true, vaccination_status: 'undisclosed'});
+        expect(user[2]).toMatchObject({ username: 'ehelsan', email: 'ehelsan@example.com', password: 'LOOOOOL', active: true, vaccination_status: 'unvaccinated'});
 
         user[2].active = false;
 
-        expect(user[2]).toMatchObject({ username: 'ehelsan', email: 'ehelsan@example.com', password: 'LOOOOOL', active: false, vaccination_status: 'undisclosed'});
+        expect(user[2]).toMatchObject({ username: 'ehelsan', email: 'ehelsan@example.com', password: 'LOOOOOL', active: false, vaccination_status: 'unvaccinated'});
 
         done();
       });
@@ -76,7 +76,7 @@ describe('User model', function(){
   });
 
   it('vaccination status can be assigned to a user', function(done){
-    var user = new User({ username: 'emma', email: 'emma@e.com', password: '123hello', vaccination_status: 'undisclosed' });
+    var user = new User({ username: 'emma', email: 'emma@e.com', password: '123hello' });
 
     user.save(function(err){
       if(err) { console.log(err) } 

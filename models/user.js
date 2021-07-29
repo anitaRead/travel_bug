@@ -19,7 +19,8 @@ var UserSchema = new mongoose.Schema({
   },
   vaccination_status: {
     type: String,
-    required: true
+    required: true,
+    default: 'unvaccinated' 
   }
 });
 
