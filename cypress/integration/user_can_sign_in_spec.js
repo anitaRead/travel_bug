@@ -13,5 +13,6 @@ describe('Home page', function() {
       cy.get('#sign-in-form').submit();
 
       cy.contains('Sign out')
+      
     });
 });
