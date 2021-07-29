@@ -44,7 +44,7 @@ body {
 }
 
 .explore-jumbotron .container {
-    margin-left: 2%;
+    margin: 0 0 10% 2%;
 }
 
 .explore-heading {
@@ -53,6 +53,30 @@ body {
     color: #000;
 }
 
-.button-row {
-    margin-top: 10%;
+@media (max-width: 576px) { 
+    .explore-heading {
+        margin-top: 10%;
+        font-size: 4rem;
+        font-weight: 600;
+        color: #000;
+    }
+
+    .jumbotron .button-row {
+        margin-top: 45%;
+    }
+
+    .button-row {
+       justify-content: center;
+       padding: 2%;
+    }
+
+    #green-list {
+        margin-top: 17.5%;
+    }
+    #amber-list {
+        margin-top: 17.5%;
+    }
+    #red-list {
+        margin-top: 17.5%;
+    }
 }
