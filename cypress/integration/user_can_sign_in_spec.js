@@ -1,6 +1,7 @@
 describe('Home page', function() {
     it('can sign in a user', function() {
       cy.visit('/');
+      cy.contains('Sign Up').click();
       cy.get('#sign-up-form').find('[name = "username"]').type('emma7563');
       cy.get('#sign-up-form').find('[name = "email"]').type('emma@example.com');
       cy.get('#sign-up-form').find('[name = "password"]').type('ilovethenorrf');
@@ -11,6 +12,6 @@ describe('Home page', function() {
       cy.get('#sign-in-form').find('[name = "password"]').type('ilovethenorrf');
       cy.get('#sign-in-form').submit();
 
-      cy.contains('Travel Bug');
+      cy.contains('Sign out')
     });
 });

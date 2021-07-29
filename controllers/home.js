@@ -10,6 +10,10 @@ var HomeController = {
     res.render('home/index', { title: 'Travel Bug' });
   },
 
+  SignupPage: function(req, res) {
+    res.render('home/signup');
+  },
+
   Create: function(req, res) {
     var user = new User(req.body);
     user.save(function(err) {
@@ -32,7 +36,7 @@ var HomeController = {
           if(users[i].password === password) {
             users[i].active = true;
             users[i].save();
-            return res.status(201).redirect('/');
+            return res.status(201).redirect('/signup');
           } 
         } 
       }
