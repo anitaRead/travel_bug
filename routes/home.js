@@ -10,8 +10,9 @@ router.get('/sessions', HomeController.SigninPage);
 router.post('/sessions/new', HomeController.Signin);
 router.post('/sessions/end', HomeController.Signout);
 router.get('/explore', HomeController.List);
+router.get('/profile', HomeController.Profile);
 
-router.get('/logo', HomeController.Logo);
+// router.get('/logo', HomeController.Logo);
 
 
 module.exports = router;

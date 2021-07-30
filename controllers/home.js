@@ -40,7 +40,7 @@ var HomeController = {
           } 
         } 
       }
-      res.status(201).redirect('/sessions');
+      res.status(201).redirect('/profile');
     });
   },
 
@@ -99,9 +99,62 @@ var HomeController = {
     
   },
 
-  Logo: function(req, res) {
-    res.render('home/logo');
-  }
+  Profile: function(req, res) {
+    var url = 'https://www.gov.uk/api/content/guidance/red-amber-and-green-list-rules-for-entering-england';
+    
+
+    https.get(url, function(response){
+      var result = '';
+      
+      response.on('data', function(data){
+        result += data;
+      })
+
+      response.on('end', function(){
+        var resultJSON = JSON.parse(result);
+        var pageData = resultJSON.details.body;
+
+        var dom = new jsdom.JSDOM(pageData);
+        var doc = dom.window.document;
+
+        function getCountries(content, tableNumber){
+          var countries = [];
+          var table = content.getElementsByTagName("table")[tableNumber];
+          var tableRows = table.getElementsByTagName("tbody")[0].children;
+
+          for(var i=0; i<tableRows.length; i++){
+            countries.push(tableRows[i].firstElementChild.textContent);
+          }
+
+          return countries;
+        }
+
+        var greenList = getCountries(doc, 2);
+        var amberList = getCountries(doc, 1);
+
+        function getTopFive(countries){
+          var randArr = [];
+          var topFive = [];
+
+          while(randArr.length < 5){
+            var rand =  Math.floor(Math.random() * countries.length);
+            if(!randArr.includes(rand)) {
+              randArr.push(rand);
+              topFive.push(countries[rand]);
+            }
+          }
+          
+          return topFive;
+        }
+
+        var vaxList = getTopFive(greenList.concat(amberList));
+        var unvaxList = getTopFive(greenList);
+        
+        res.render('home/profile', { vaxList: vaxList, unvaxList: unvaxList });
+      })
+    })
+    
+  },
 };
 
 module.exports = HomeController;
