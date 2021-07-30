@@ -1,5 +1,19 @@
 body {
     overflow-x: hidden;
+    font-family: "Montserrat", sans-serif;
+}
+
+.navbar {
+    border-bottom: 0.25px solid #3b8f70;
+    background-color: transparent;
+}
+
+.fa-globe-americas {
+    color: #3b8f70; 
+}
+
+.nav-link {
+    font-size: 1.2rem;
 }
 
 #red-list {
@@ -44,14 +58,17 @@ body {
 }
 
 .explore-jumbotron .container {
-    margin: 0 0 10% 2%;
+    margin: 0 0 10% 0.5%;
 }
 
 .explore-heading {
-    font-size: 6rem;
+    font-size: 5rem;
     font-weight: 600;
-    color: #000;
+    color: #3b8f70;
 }
+
+
+/* Media queries for mobile */
 
 @media (max-width: 576px) { 
     .explore-heading {
