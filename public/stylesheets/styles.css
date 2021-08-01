@@ -3,22 +3,64 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+/* Navbar */
+
 .navbar {
-    border-bottom: 0.25px solid #3b8f70;
     background-color: transparent;
 }
 
 .fa-globe-americas {
-    color: #3b8f70; 
+    color: #228B22;
 }
 
 .nav-link {
+    color: #F5F5F5; 
+    font-weight: 600;
     font-size: 1.2rem;
 }
 
+.nav-link:hover {
+    color: #fff;
+    border-bottom: 2px solid #d3d3d3;
+}
+
+/* Sign up page */
+
+ .sign-up-page {
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 100%, #000000 100%), url("../images/island.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+ }
+
+ .form-style {
+    width: 18rem; 
+    margin-top: 2%;
+ }
+
+ /* Sign in page */
+
+ .sign-in-page {
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 100%, #000000 100%), url("../images/cuba.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+ }
+
+ .sign-in-heading {
+     color: #F5F5F5;
+     font-weight: 600;
+ }
+
+
+
+/* Explore page */
+
 #red-list {
     display: none;
-    margin: 6% 6%;
+    margin: 2% 6%;
 }
 
 #red-list .list-item {
@@ -29,7 +71,7 @@ body {
 
 #amber-list {
     display: none;
-    margin: 6% 6%;
+    margin: 2% 6%;
 }
 
 #amber-list .list-item {
@@ -40,7 +82,7 @@ body {
 
 #green-list {
     display: none;
-    margin: 6% 6%;
+    margin: 2% 6%;
 }
 
 #green-list .list-item {
@@ -50,50 +92,36 @@ body {
 }
 
 .explore-jumbotron {
-    height: 60vh;
-    background-image: url("../images/island.jpg");
+    height: 70vh;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 100%, #000000 100%), url("../images/mountains.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
-.explore-jumbotron .container {
-    margin: 0 0 10% 0.5%;
-}
-
 .explore-heading {
+    margin-top: 7%;
+    margin-left: 10%;
     font-size: 5rem;
     font-weight: 600;
-    color: #3b8f70;
+    color: #fff;
 }
+
+.button-row {
+    justify-content: center;
+    margin-top: -4%;
+ }
 
 
 /* Media queries for mobile */
 
 @media (max-width: 576px) { 
     .explore-heading {
-        margin-top: 10%;
-        font-size: 4rem;
-        font-weight: 600;
-        color: #000;
-    }
-
-    .jumbotron .button-row {
-        margin-top: 45%;
+        text-align: center!important;
+        margin: 15% 0 0 0;
     }
 
     .button-row {
-       justify-content: center;
-       padding: 2%;
-    }
-
-    #green-list {
-        margin-top: 17.5%;
-    }
-    #amber-list {
-        margin-top: 17.5%;
-    }
-    #red-list {
-        margin-top: 17.5%;
+       margin-top: -6%;
     }
 }

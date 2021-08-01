@@ -1,43 +1,45 @@
+<div class="jumbotron jumbotron-fluid explore-jumbotron">
 <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-light px-5">
+  <nav class="navbar navbar-expand-lg px-5">
     <a class="navbar-brand" href="/">
         <i class="fad fa-globe-americas fa-2x"></i>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse px-1" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/explore">Explore</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
-        </li>
+        <ul class="navbar-nav align-items-center">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/explore">Explore</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+            </li>
         </ul>
     </div>
-
   </nav>
 
-<div class="jumbotron jumbotron-fluid explore-jumbotron">
-  <div class="pt-5 container">
-    <h1 class="pt-5 explore-heading text-start">Explore</h1>
-  </div>
 
-  <div class="d-flex row align-items-end button-row">
-    <div class="col-md-4 col-4 p-1">
+    <div class="d-flex row">
+        <div class="container col-12">
+            <h1 class="pl-2 explore-heading text-start">Explore</h1>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex row button-row">
+    <div class="col-md-3 col-4 p-1">
         <button type="button" id="red-button" class="btn btn-danger p-5 rounded-circle"></button>
     </div>
-    <div class="col-md-4 col-4 p-1">
+    <div class="col-md-3 col-4 p-1">
         <button type="button" id="amber-button" class="btn btn-warning p-5 rounded-circle"></button>
     </div>
-    <div class="col-md-4 col-4 p-1">
+    <div class="col-md-3 col-4 p-1">
         <button type="button" id="green-button" class="btn btn-success p-5 rounded-circle"></button>
     </div>
-  </div>
 </div>
 
     <div id="red-list" class="shadow card">
