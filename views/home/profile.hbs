@@ -1,12 +1,19 @@
 <h1>Destinations recommended for you</h1>
 
-<h2>You have been vaccinated, go here:</h2>
-<ul id="recommended-list">
-{{#each vaxList}}
-    <li class="recommended-list-item">{{this}}</li>
-{{/each}}
-    <li><h2>You are unvaccinated, go here:</h2></li>
-{{#each unvaxList}}
-    <li class="recommended-list-item">{{this}}</li>
-{{/each}}
+
+{{#if vaxStatus}}
+<div class="recommended-list">
+    <h3>You have been vaccinated, go here:</h3>
+    {{#each vaxList}}
+        <div class="recommended-list-item">{{this}}</div>
+    {{/each}}
 </ul>
+{{else}}
+<div class="recommended-list">
+    <h3>You are unvaccinated, go here:</h3>
+    {{#each unvaxList}}
+        <div class="recommended-list-item">{{this}}</div>
+    {{/each}}
+</div>
+{{/if}}
+

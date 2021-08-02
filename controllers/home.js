@@ -147,12 +147,30 @@ var HomeController = {
           return topFive;
         }
 
-        var vaxList = getTopFive(greenList.concat(amberList));
-        var unvaxList = getTopFive(greenList);
+        
 
+        User.find(function(err, users) {
+          if(err) { throw err }
+          var vaxStatus = false;
+        
+          for(var i=0; i<users.length; i++) {
+            if(users[i].active === true) {
+              if(users[i].vaccination_status === "vaccinated") {
+                vaxStatus = true;
+              } else {
+                vaxStatus = false;
+              }
+            } 
+          }
+
+          var vaxList = getTopFive(greenList.concat(amberList));
+          var unvaxList = getTopFive(greenList);
         
         
-        res.render('home/profile', { vaxList: vaxList, unvaxList: unvaxList });
+          res.render('home/profile', { vaxList: vaxList, unvaxList: unvaxList, vaxStatus: vaxStatus});
+          
+        });
+        
       })
     })
     
