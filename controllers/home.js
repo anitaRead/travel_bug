@@ -2,7 +2,6 @@ var User = require('../models/user');
 var https = require('https');
 // var countryList = require('country-list');
 var jsdom = require("jsdom");
-const { isRegExp } = require('util');
 
 
 
@@ -135,9 +134,10 @@ var HomeController = {
         var greenList = getCountries(doc, 2);
         var amberList = getCountries(doc, 1);
         var noFlyList = ["Afghanistan", "Burkina Faso", "Central African Republic", "Haiti", "Iran", "Iraq", "Libya", "Mali",
-        "North Korea", "Mali", "Somalia", "South Sudan", "Syria", "Venezuela", "Yemen", "El Salvador", "Chad", "Honduras", "Nicaragua", 
-        "Congo", "Congo (Democratic Republic)", "The Occupied Palestinian Territories", "Sudan", "Sudan", "Niger", "Mozambique", 
-        "Ethiopia", "Eritrea", "Cameroon", "Pakistan", "Myanmar", "Ukraine", "Belarus", "Colombia", "Eswatini", "Liberia"]
+        "North Korea", "Mali", "Somalia", "South Sudan", "Syria", "Venezuela", "Yemen", "El Salvador", "Chad", "Honduras", 
+        "Nicaragua", "Congo", "Congo (Democratic Republic)", "The Occupied Palestinian Territories", "Sudan", "Sudan", "Niger", 
+        "Mozambique", "Ethiopia", "Eritrea", "Cameroon", "Pakistan", "Myanmar", "Ukraine", "Belarus", "Colombia", "Eswatini", 
+        "Liberia", "Jordan"]
 
         function getTopFive(countries){
           var randArr = [];
