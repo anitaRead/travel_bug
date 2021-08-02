@@ -36,7 +36,7 @@ var HomeController = {
           if(users[i].password === password) {
             users[i].active = true;
             users[i].save();
-            return res.status(201).redirect('/signup');
+            return res.status(201).redirect('/profile');
           } 
         } 
       }
@@ -98,10 +98,25 @@ var HomeController = {
     })
     
   },
-
-  Logo: function(req, res) {
-    res.render('home/logo');
+ 
+  
+  Profile: function(req,res) {
+    var gravatar = require('gravatar');
+    
+    User.find(function(err, users) {
+      if(err) { throw err }
+      for(var i=0; i<users.length; i++) {
+        if(users[i].active === true) {
+          var username = users[i].username;
+          var email = users[i].email;
+          var vaccination_status = users[i].vaccination_status;
+          var secureUrl = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, true);
+        }
+      }
+      res.render('home/profile', {username: username, vaccination_status: vaccination_status, secureUrl: secureUrl})
+    })
   }
+
 };
 
 module.exports = HomeController;
