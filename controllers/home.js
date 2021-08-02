@@ -100,10 +100,10 @@ var HomeController = {
 
   Profile: function(req, res){
     var countryListNames = countryList.getNames();
-    User.findOne({active: true}, function(err, user) {
-      if(err) { throw err}
-      user.fav_countries;
-    })
+    // User.findOne({active: true}, function(err, user) {
+    //   if(err) { throw err}
+    //   user.fav_countries;
+    // })
     res.render('home/profile', {country_list: countryListNames})
   },
 
