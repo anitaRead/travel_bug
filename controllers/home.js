@@ -99,12 +99,14 @@ var HomeController = {
   },
 
   Profile: function(req, res){
-    var countryListNames = countryList.getNames();
-    // User.findOne({active: true}, function(err, user) {
-    //   if(err) { throw err}
-    //   user.fav_countries;
-    // })
-    res.render('home/profile', {country_list: countryListNames})
+
+    User.findOne({active: true}, function(err, user) {
+      if(err) { throw err}
+      var countryListNames = countryList.getNames();
+      var fc = user.fav_countries;
+      res.render('home/profile', {country_list: countryListNames, fav_countries: fc})
+    })
+
   },
 
   UpdateProfileFaveCountry: function(req, res){
