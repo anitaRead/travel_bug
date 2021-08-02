@@ -104,7 +104,8 @@ var HomeController = {
       if(err) { throw err}
       var countryListNames = countryList.getNames();
       var fc = user.fav_countries;
-      res.render('home/profile', {country_list: countryListNames, fav_countries: fc})
+      var username = user.username;
+      res.render('home/profile', {country_list: countryListNames, fav_countries: fc, username: username})
     })
 
   },
@@ -112,8 +113,6 @@ var HomeController = {
   UpdateProfileFaveCountry: function(req, res){
     var country = req.body.country
     console.log(req.body.country);
-    // var id = req.params.id;
-    // User.find(function(err, users) {
     User.findOne({active: true}, function(err, user) {
       if(err) { throw err}
       user.fav_countries.push(country);
