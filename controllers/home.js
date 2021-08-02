@@ -106,9 +106,7 @@ var HomeController = {
     User.findOne({active: true}, function(err, users) { 
       if(err) { throw err }
 
-      
       var email = req.params.email;
-      
       var secureUrl = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, true);
       
       res.render('home/profile', {username : users.username, vaccination_status : users.vaccination_status, secureUrl: secureUrl})

@@ -13,7 +13,7 @@ describe('Home page', function() {
     cy.get('#sign-in-form').submit();
 
     cy.contains('hello!')
-    cy.contains('vaccination status:')
+    cy.contains('vaccination status: unvaccinated')
 
   });
 });
