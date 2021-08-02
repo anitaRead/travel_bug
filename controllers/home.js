@@ -103,13 +103,13 @@ var HomeController = {
   Profile: function(req,res) {
     var gravatar = require('gravatar');
     
-    User.findOne({active: true}, function(err, users) { 
+    User.findOne({active: true}, function(err, user) { 
       if(err) { throw err }
 
-      var email = req.params.email;
+      var email = user.email
       var secureUrl = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, true);
-      
-      res.render('home/profile', {username : users.username, vaccination_status : users.vaccination_status, secureUrl: secureUrl})
+
+      res.render('home/profile', {username: user.username, vaccination_status: user.vaccination_status, secureUrl: secureUrl})
     })
   }
 
