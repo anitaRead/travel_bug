@@ -39,6 +39,8 @@ var HomeController = {
             return res.status(201).redirect('/signup');
           } 
         } 
+        users[i].active = false;
+        users[i].save();
       }
       res.status(201).redirect('/profile');
     });
