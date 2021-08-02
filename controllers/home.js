@@ -149,6 +149,8 @@ var HomeController = {
 
         var vaxList = getTopFive(greenList.concat(amberList));
         var unvaxList = getTopFive(greenList);
+
+        
         
         res.render('home/profile', { vaxList: vaxList, unvaxList: unvaxList });
       })
@@ -158,3 +160,11 @@ var HomeController = {
 };
 
 module.exports = HomeController;
+
+
+
+
+
+
+
+
