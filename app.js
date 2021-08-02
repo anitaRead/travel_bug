@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-// var { getCode, getName } = require('country-list');
+var { getCode, getName } = require('country-list');
 
 
 var homeRouter = require('./routes/home');

@@ -1,6 +1,6 @@
 var User = require('../models/user');
 var https = require('https');
-// var countryList = require('country-list');
+var countryList = require('country-list');
 var jsdom = require("jsdom");
 
 
@@ -37,8 +37,8 @@ var HomeController = {
             users[i].active = true;
             users[i].save();
             return res.status(201).redirect('/signup');
-          } 
-        } 
+          }
+        }
       }
       res.status(201).redirect('/sessions');
     });
@@ -52,7 +52,7 @@ var HomeController = {
             users[i].active = false;
             users[i].save();
             return res.status(201).redirect('/');
-        } 
+        }
       }
       res.redirect('/');
     });
@@ -61,11 +61,11 @@ var HomeController = {
   List: function(req, res) {
 
     var url = 'https://www.gov.uk/api/content/guidance/red-amber-and-green-list-rules-for-entering-england';
-    
+
 
     https.get(url, function(response){
       var result = '';
-      
+
       response.on('data', function(data){
         result += data;
       })
@@ -88,20 +88,38 @@ var HomeController = {
 
           return countries;
         }
-        
+
         var redList = getCountries(doc, 0);
         var amberList = getCountries(doc, 1);
         var greenList = getCountries(doc, 2);
-        
+
         res.render('explore/index', { redList: redList, amberList: amberList, greenList: greenList })
       })
     })
-    
+
   },
 
-  Logo: function(req, res) {
-    res.render('home/logo');
+  Profile: function(req, res){
+    var countryList = countryList.getNames();
+    res.render('home/profile', {country_list: countryList})
+  },
+
+  UpdateProfileFaveCountry: function(req, res){
+    var countryList = req.params.countryList
+    var id = req.params.id;
+    User.find(function(err, users) {
+      if(err) { throw err }
+      for(var i=0; i<users.length; i++) {
+        if(users[i].active === true) {
+          User.updateOne({"_id" : id}, {$set: {"favCountry": countryList}}, {upsert: true}, function(err){
+            if(err) {throw err;}
+            res.status(201).redirect('/profile')
+          })
+        }
+      }
+    });
   }
-};
+
+}
 
 module.exports = HomeController;
