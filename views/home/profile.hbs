@@ -1,15 +1,15 @@
-<form id="fav-country-form" action="/profile" method="post">
-  <label for="fav-country"> Select your favorite country</label>
-  <input id="fav-country" type="text" name="fave-country" value="">
-  <input type="submit" value="Add">
+<form id="fav-country-form" action="/addCountry" method="post">
+  <label for="fav-country">Select your favorite country</label>
+  <select name="country" size="10">
+    {{#each country_list}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+  <!-- {{#each country_list}}
+    <input type="checkbox">{{this}}
+  {{/each}} -->
+
+  <!-- <input type="text" name="test"> -->
+  <input type="submit" value="Submit">
+
 </form>
-
-
-<div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-  <div id="myDropdown" class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
-</div>

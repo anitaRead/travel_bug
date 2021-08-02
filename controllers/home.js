@@ -96,29 +96,29 @@ var HomeController = {
         res.render('explore/index', { redList: redList, amberList: amberList, greenList: greenList })
       })
     })
-
   },
 
   Profile: function(req, res){
-    var countryList = countryList.getNames();
-    res.render('home/profile', {country_list: countryList})
+    var countryListNames = countryList.getNames();
+    User.findOne({active: true}, function(err, user) {
+      if(err) { throw err}
+      user.fav_countries;
+    })
+    res.render('home/profile', {country_list: countryListNames})
   },
 
   UpdateProfileFaveCountry: function(req, res){
-    var countryList = req.params.countryList
-    var id = req.params.id;
-    User.find(function(err, users) {
-      if(err) { throw err }
-      for(var i=0; i<users.length; i++) {
-        if(users[i].active === true) {
-          User.updateOne({"_id" : id}, {$set: {"favCountry": countryList}}, {upsert: true}, function(err){
-            if(err) {throw err;}
-            res.status(201).redirect('/profile')
-          })
-        }
-      }
-    });
-  }
+    var country = req.body.country
+    console.log(req.body.country);
+    // var id = req.params.id;
+    // User.find(function(err, users) {
+    User.findOne({active: true}, function(err, user) {
+      if(err) { throw err}
+      user.fav_countries.push(country);
+      user.save();
+  })
+  res.status(201).redirect('/profile')
+}
 
 }
 

@@ -10,7 +10,8 @@ router.get('/sessions', HomeController.SigninPage);
 router.post('/sessions/new', HomeController.Signin);
 router.post('/sessions/end', HomeController.Signout);
 router.get('/explore', HomeController.List);
-router.get('/profile', HomeController.profile);
+router.get('/profile', HomeController.Profile);
+router.post('/addCountry', HomeController.UpdateProfileFaveCountry);
 
 
 module.exports = router;
