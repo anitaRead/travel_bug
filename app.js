@@ -3,10 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
 // var { getCode, getName } = require('country-list');
 
 
 var homeRouter = require('./routes/home');
+var sessionsRouter = require('./routes/sessions');
 
 var app = express();
 
@@ -19,12 +21,28 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({key: 'user_sid', secret: 'somerandonstuffs', resave: false, saveUninitialized: false,
+  cookie: {expires: 600000}
+}));
 
+// app.use((req, res, next) => {
+//   if (req.cookies.user_sid && !req.session.user) {
+//     res.clearCookie('user_sid');
+//   }
+//   next();
+// });
+
+var sessionChecker = (req, res, next) => {
+  if (req.cookies.user_sid)
+  {
+    next();
+  } else {
+    res.redirect('/sessions');
+  }};
 
 // route setup
-
-app.use('/', homeRouter);
-
+app.use('/sessions', sessionsRouter);
+app.use('/', sessionChecker, homeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

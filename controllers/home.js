@@ -30,20 +30,13 @@ var HomeController = {
   Signin: function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
-    User.find(function(err, users) {
-      if (err) { throw err; }
-      for(var i=0; i<users.length; i++) {
-        if(users[i].username === username) {
-          if(users[i].password === password) {
-            users[i].active = true;
-            users[i].save();
-            return res.status(201).redirect('/profile');
-          } 
-        } 
-        users[i].active = false;
-        users[i].save();
+    User.findOne({username: username}, function(err, user) {
+      if(user.password === password) {
+        req.session.user_sid = user._id;
+        console.log(req.session.user);
+        console.log(user);
+        res.status(201).redirect('/profile');
       }
-      res.status(201).redirect('/sessions');
     });
   },
 
@@ -55,7 +48,7 @@ var HomeController = {
             users[i].active = false;
             users[i].save();
             return res.status(201).redirect('/');
-        } 
+        }
       }
       res.redirect('/');
     });
@@ -64,11 +57,11 @@ var HomeController = {
   List: function(req, res) {
 
     var url = 'https://www.gov.uk/api/content/guidance/red-amber-and-green-list-rules-for-entering-england';
-    
+
 
     https.get(url, function(response){
       var result = '';
-      
+
       response.on('data', function(data){
         result += data;
       })
@@ -91,23 +84,23 @@ var HomeController = {
 
           return countries;
         }
-        
+
         var redList = getCountries(doc, 0);
         var amberList = getCountries(doc, 1);
         var greenList = getCountries(doc, 2);
-        
+
         res.render('explore/index', { redList: redList, amberList: amberList, greenList: greenList })
       })
     })
-    
+
   },
- 
-  
+
+
   Profile: function(req,res) {
 
     var gravatar = require('gravatar');
-    
-    User.findOne({active: true}, function(err, user) { 
+
+    User.findOne({active: true}, function(err, user) {
       if(err) { throw err }
 
       var email = user.email;
