@@ -33,25 +33,16 @@ var HomeController = {
     User.findOne({username: username}, function(err, user) {
       if(user.password === password) {
         req.session.user_sid = user._id;
-        console.log(req.session.user);
-        console.log(user);
         res.status(201).redirect('/profile');
       }
     });
   },
 
   Signout: function(req, res) {
-    User.find(function(err, users) {
-      if(err) { throw err }
-      for(var i=0; i<users.length; i++) {
-        if(users[i].active === true) {
-            users[i].active = false;
-            users[i].save();
-            return res.status(201).redirect('/');
-        }
-      }
-      res.redirect('/');
-    });
+    if (req.session.user_sid) {
+      res.clearCookie('user_sid');
+      res.status(201).redirect('/');
+    }
   },
 
   List: function(req, res) {

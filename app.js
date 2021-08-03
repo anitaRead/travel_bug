@@ -33,7 +33,7 @@ app.use(session({key: 'user_sid', secret: 'somerandonstuffs', resave: false, sav
 // });
 
 var sessionChecker = (req, res, next) => {
-  if (req.cookies.user_sid)
+  if (req.session.user_sid)
   {
     next();
   } else {
