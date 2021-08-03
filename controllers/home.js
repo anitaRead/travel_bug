@@ -5,6 +5,7 @@ var jsdom = require("jsdom");
 
 
 
+
 var HomeController = {
   Index: function(req, res) {
     res.render('home/index', { title: 'Travel Bug' });
@@ -36,9 +37,11 @@ var HomeController = {
           if(users[i].password === password) {
             users[i].active = true;
             users[i].save();
-            return res.status(201).redirect('/signup');
+            return res.status(201).redirect('/profile');
           } 
         } 
+        users[i].active = false;
+        users[i].save();
       }
       res.status(201).redirect('/sessions');
     });
@@ -98,10 +101,23 @@ var HomeController = {
     })
     
   },
+ 
+  
+  Profile: function(req,res) {
 
-  Logo: function(req, res) {
-    res.render('home/logo');
+    var gravatar = require('gravatar');
+    
+    User.findOne({active: true}, function(err, user) { 
+      if(err) { throw err }
+
+      var email = user.email;
+
+      var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
+
+      res.render('home/profile', {username: user.username, vaccination_status: user.vaccination_status, url: url})
+    })
   }
+
 };
 
 module.exports = HomeController;

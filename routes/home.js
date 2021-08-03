@@ -11,7 +11,8 @@ router.post('/sessions/new', HomeController.Signin);
 router.post('/sessions/end', HomeController.Signout);
 router.get('/explore', HomeController.List);
 
-router.get('/logo', HomeController.Logo);
+
+router.get('/profile', HomeController.Profile);
 
 
 module.exports = router;
