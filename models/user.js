@@ -22,7 +22,7 @@ var UserSchema = new mongoose.Schema({
     required: true,
     default: 'unvaccinated'
   },
-  fav_countries: []
+  fav_countries: ["List"]
 });
 
 var User = mongoose.model('User', UserSchema);

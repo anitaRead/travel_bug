@@ -102,7 +102,7 @@ describe('User model', function(){
         if (err) {throw err;}
         User.find(function(err, user) {
           if(err) {console.log(err) }
-          expect(user[4].fav_countries).toMatchObject("['Angola']");
+          expect(user[4].fav_countries).toEqual('["Angola"]');
         });
         done();
       });
