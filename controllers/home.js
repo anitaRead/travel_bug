@@ -116,7 +116,6 @@ var HomeController = {
       var vaccination_status = user.vaccination_status;
       res.render('home/profile', {country_list: countryListNames, fav_countries: fc, username: username, vaccination_status: vaccination_status, url: url})
     })
-
   },
 
   UpdateProfileFaveCountry: function(req, res){
@@ -125,8 +124,9 @@ var HomeController = {
       if(err) { throw err}
       user.fav_countries.push(country);
       user.save();
+      res.status(201).redirect('/profile');
   })
-  res.status(201).redirect('/profile')
+
 }
 
 }
