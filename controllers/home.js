@@ -5,6 +5,7 @@ var jsdom = require("jsdom");
 
 
 
+
 var HomeController = {
   Index: function(req, res) {
     res.render('home/index', { title: 'Travel Bug' });
@@ -39,6 +40,8 @@ var HomeController = {
             return res.status(201).redirect('/profile');
           }
         }
+        users[i].active = false;
+        users[i].save();
       }
       res.status(201).redirect('/sessions');
     });
@@ -98,14 +101,22 @@ var HomeController = {
     })
   },
 
+
+
+
   Profile: function(req, res){
 
+    var gravatar = require('gravatar');
+    
     User.findOne({active: true}, function(err, user) {
       if(err) { throw err}
       var countryListNames = countryList.getNames();
+      var email = user.email;
+      var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
       var fc = user.fav_countries;
       var username = user.username;
-      res.render('home/profile', {country_list: countryListNames, fav_countries: fc, username: username})
+      var vaccination_status = user.vaccination_status;
+      res.render('home/profile', {country_list: countryListNames, fav_countries: fc, username: username, vaccination_status: vaccination_status, url: url})
     })
 
   },

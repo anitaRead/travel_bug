@@ -1,3 +1,14 @@
+<h1> hello! </h1>
+
+<div class="m-b-25"> <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> </div>
+
+<h5>welcome, {{username}} </h5>
+<h6>vaccination status: {{vaccination_status}}</h6>
+
+ <form action="/sessions/end" method="post">
+    <button class="btn btn-outline-danger btn-sm mx-4" type="submit" id="sign-out-button"><b>Sign out</b></button>
+  </form>
+
 <form id="fav-country-form" action="/addCountry" method="post">
   <label for="fav-country">Select your favorite country</label>
   <select name="country" size="10">

@@ -13,9 +13,9 @@ describe('Home page', function() {
       cy.get('#sign-in-form').submit();
 
       cy.get('#fav-country-form').contains("Andorra")
-      // cy.get('#sign-out-button').click();
-      //
-      // cy.contains('Sign Up');
-      // cy.contains('Sign In');
+      cy.get('#sign-out-button').click();
+      
+      cy.contains('Sign Up');
+      cy.contains('Sign In');
     });
 });

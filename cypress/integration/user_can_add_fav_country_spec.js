@@ -6,13 +6,11 @@ describe('Home page', function() {
       cy.get('#sign-up-form').find('[name = "email"]').type('greg@example.com');
       cy.get('#sign-up-form').find('[name = "password"]').type('gregs');
       cy.get('#sign-up-form').submit();
-      // cy.contains('Welcome!');
 
       cy.get('#sign-in-form').find('[name = "username"]').type('greg');
       cy.get('#sign-in-form').find('[name = "password"]').type('gregs');
       cy.get('#sign-in-form').submit();
 
-      // cy.visit('/profile')
       cy.get('#fav-country-form').find('[name = "country"]').select('Andorra');
       cy.get('#fav-country-form').submit();
       cy.get('#fav-country-form').find('[name = "country"]').select('Angola');
