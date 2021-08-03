@@ -1,19 +1,32 @@
-<h1>Destinations recommended for you</h1>
+<h1 id="profile-title">Destinations recommended for you</h1>
 
 
 {{#if vaxStatus}}
-<div class="recommended-list">
-    <h3>You have been vaccinated, go here:</h3>
+<div id="recommended-list-one">
+    <div class="row">
+        <h3 class="col-md-12">You have been vaccinated, go here:</h3>
+    </div>
+    <div class="row">
     {{#each vaxList}}
-        <div class="recommended-list-item">{{this}}</div>
+        <div class="recommended-list-item col-md-3">{{this}}</div>
     {{/each}}
+    </div>
 </ul>
 {{else}}
-<div class="recommended-list">
-    <h3>You are unvaccinated, go here:</h3>
-    {{#each unvaxList}}
-        <div class="recommended-list-item">{{this}}</div>
-    {{/each}}
+<div id="recommended-list-two">
+    <div class="row">
+        <h3 id="rec-header" class="col-md-12">You are unvaccinated, go here:</h3>
+    </div>
+    <div class="row">
+        <div id="user-details" class="col-3"></div>
+        <div class="unvax-list-item col-3"><p>{{unvaxList.[0]}}</p></div>
+        <div class="unvax-list-item col-3"><p>{{unvaxList.[1]}}</p></div>
+        <div class="unvax-list-item col-3"><p>{{unvaxList.[2]}}</p></div>
+        <div class="unvax-list-item col-3"><p>{{unvaxList.[3]}}</p></div>
+        <div class="unvax-list-item col-3"><p>{{unvaxList.[4]}}</p></div>
+        <div class="unvax-list-item col-3"><p>{{unvaxList.[5]}}</p></div>
+    </div>
 </div>
 {{/if}}
+
 
