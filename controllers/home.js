@@ -5,6 +5,7 @@ var jsdom = require("jsdom");
 
 
 
+
 var HomeController = {
   Index: function(req, res) {
     res.render('home/index', { title: 'Travel Bug' });
@@ -36,7 +37,7 @@ var HomeController = {
           if(users[i].password === password) {
             users[i].active = true;
             users[i].save();
-            return res.status(201).redirect('/signup');
+            return res.status(201).redirect('/profile');
           } 
         } 
         users[i].active = false;
@@ -100,10 +101,10 @@ var HomeController = {
     })
     
   },
-
+ 
   Profile: function(req, res) {
     var url = 'https://www.gov.uk/api/content/guidance/red-amber-and-green-list-rules-for-entering-england';
-    
+    var gravatar = require('gravatar');
 
     https.get(url, function(response){
       var result = '';
@@ -156,34 +157,47 @@ var HomeController = {
           return topSix;
         }
 
-        
-
-        User.find(function(err, users) {
+        User.findOne({active: true}, function(err, user) { 
           if(err) { throw err }
           var vaxStatus = false;
-        
-          for(var i=0; i<users.length; i++) {
-            if(users[i].active === true) {
-              if(users[i].vaccination_status === "vaccinated") {
-                vaxStatus = true;
-              } else {
-                vaxStatus = false;
-              }
-            } 
+          var email = user.email;
+          var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
+
+          if(user.vaccination_status === "vaccinated") {
+            vaxStatus = true;
+          } else {
+            vaxStatus = false;
           }
+
+        
+
+        // User.find(function(err, users) {
+        //   if(err) { throw err }
+        //   var vaxStatus = false;
+        
+        //   for(var i=0; i<users.length; i++) {
+        //     if(users[i].active === true) {
+        //       if(users[i].vaccination_status === "vaccinated") {
+        //         vaxStatus = true;
+        //       } else {
+        //         vaxStatus = false;
+        //       }
+        //     } 
+        //   }
 
           var vaxList = getTopSix(greenList.concat(amberList));
           var unvaxList = getTopSix(greenList);
         
         
-          res.render('home/profile', { vaxList: vaxList, unvaxList: unvaxList, vaxStatus: vaxStatus});
-          
+          res.render('home/profile', { username: user.username, vaxList: vaxList, unvaxList: unvaxList, vaxStatus: vaxStatus, url: url});
+          // vaccination_status: user.vaccination_status,
         });
         
       })
     })
-    
+  
   },
+
 };
 
 module.exports = HomeController;

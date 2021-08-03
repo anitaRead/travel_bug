@@ -13,5 +13,4 @@ router.get('/explore', HomeController.List);
 router.get('/profile', HomeController.Profile);
 
 
-
 module.exports = router;
