@@ -6,6 +6,22 @@ let redList = document.querySelector("#red-list");
 let amberList = document.querySelector("#amber-list");
 let greenList = document.querySelector("#green-list");
 
+let countries = document.querySelectorAll(".recommended-list-item");
+
+countries.forEach(function(country){
+    let countryName = country.children[0].innerHTML;
+    console.log(countryName);
+    let url = `https://api.unsplash.com/search/photos/?query=${countryName}&page=1&per_page=1&client_id=K2ForJ_PYF0C2pa3D3UMURO7k3Gjde9FVcfVBMIdMgk`
+    
+    fetch(url)
+    .then(response => response.json())
+    .then(imageData => {
+        let path = imageData.results[0].urls.regular.toString();
+        country.style.backgroundImage = `url(${path})`;
+    });
+
+});
+
 redButton.addEventListener("click", () => {
     amberList.style.display = "none";
     greenList.style.display = "none";

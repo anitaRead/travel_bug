@@ -139,21 +139,21 @@ var HomeController = {
         "Mozambique", "Ethiopia", "Eritrea", "Cameroon", "Pakistan", "Myanmar", "Ukraine", "Belarus", "Colombia", "Eswatini", 
         "Liberia", "Jordan"]
 
-        function getTopFive(countries){
+        function getTopSix(countries){
           var randArr = [];
-          var topFive = [];
+          var topSix = [];
 
-          while(randArr.length < 5){
+          while(randArr.length < 6){
             var rand =  Math.floor(Math.random() * countries.length);
             if(!randArr.includes(rand)) {
               if(!noFlyList.includes(countries[rand])){
                 randArr.push(rand);
-                topFive.push(countries[rand]);
+                topSix.push(countries[rand]);
               }
             }
           }
           
-          return topFive;
+          return topSix;
         }
 
         
@@ -172,8 +172,8 @@ var HomeController = {
             } 
           }
 
-          var vaxList = getTopFive(greenList.concat(amberList));
-          var unvaxList = getTopFive(greenList);
+          var vaxList = getTopSix(greenList.concat(amberList));
+          var unvaxList = getTopSix(greenList);
         
         
           res.render('home/profile', { vaxList: vaxList, unvaxList: unvaxList, vaxStatus: vaxStatus});

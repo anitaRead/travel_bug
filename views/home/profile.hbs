@@ -1,19 +1,77 @@
-<h1>Destinations recommended for you</h1>
+<h1 id="profile-title">Destinations recommended for you</h1>
 
 
 {{#if vaxStatus}}
-<div class="recommended-list">
-    <h3>You have been vaccinated, go here:</h3>
-    {{#each vaxList}}
-        <div class="recommended-list-item">{{this}}</div>
-    {{/each}}
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            sbkjasbzxbasmz <br>
+            nsbjcxblksnxzk <br>
+            csvxkhcvlkn`znxlm;znxlm<br>
+            xcvsjhxvjcblskz<br>
+        </div>
+        <div class="col-md-10">
+            <div class="row justify-content-end">
+                <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                    <p>{{vaxList.[0]}}</p>
+                </div>
+                <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                    <p>{{vaxList.[1]}}</p>
+                </div>
+                <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                    <p>{{vaxList.[2]}}</p>
+                </div>
+            </div>
+
+            <div class="row justify-content-end">
+                <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                    <p>{{vaxList.[3]}}</p>
+                </div>
+                <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                    <p>{{vaxList.[4]}}</p>
+                </div>
+                <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                    <p>{{vaxList.[5]}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {{else}}
-<div class="recommended-list">
-    <h3>You are unvaccinated, go here:</h3>
-    {{#each unvaxList}}
-        <div class="recommended-list-item">{{this}}</div>
-    {{/each}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            sbkjasbzxbasmz <br>
+            nsbjcxblksnxzk <br>
+            csvxkhcvlkn`znxlm;znxlm<br>
+            xcvsjhxvjcblskz<br>
+        </div>
+        <div class="col-md-10">
+            <div class="row justify-content-end">
+                <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                    <p>{{unvaxList.[0]}}</p>
+                </div>
+                <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                    <p>{{unvaxList.[1]}}</p>
+                </div>
+                <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                    <p>{{unvaxList.[2]}}</p>
+                </div>
+            </div>
+
+            <div class="row justify-content-end">
+                <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                    <p>{{unvaxList.[3]}}</p>
+                </div>
+                <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                    <p>{{unvaxList.[4]}}</p>
+                </div>
+                <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                    <p>{{unvaxList.[5]}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {{/if}}
-

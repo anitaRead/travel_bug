@@ -53,6 +53,27 @@ body {
     color: #000;
 }
 
+/* Profile page */
+
+.recommended-list-item {
+    height: 275px;
+    width: 275px;
+    background-image: url("../images/island.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(80%);
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.recommended-list-item:hover {
+    font-weight: 700;
+    filter: brightness(100%);
+}
+
+
 @media (max-width: 576px) { 
     .explore-heading {
         margin-top: 10%;
