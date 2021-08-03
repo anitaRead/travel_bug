@@ -102,12 +102,10 @@ var HomeController = {
   },
 
 
-
-
   Profile: function(req, res){
 
     var gravatar = require('gravatar');
-    
+
     User.findOne({active: true}, function(err, user) {
       if(err) { throw err}
       var countryListNames = countryList.getNames();
@@ -123,7 +121,6 @@ var HomeController = {
 
   UpdateProfileFaveCountry: function(req, res){
     var country = req.body.country
-    console.log(req.body.country);
     User.findOne({active: true}, function(err, user) {
       if(err) { throw err}
       user.fav_countries.push(country);
