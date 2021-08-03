@@ -101,6 +101,17 @@ var HomeController = {
     })
   },
 
+  UpdateProfileFaveCountry: function(req, res){
+    var countrySelected = req.body.country
+    User.findOne({active: true}, function(err, user) {
+      if(err) { throw err}
+      if(!user.fav_countries.includes(countrySelected)){
+        user.fav_countries.push(countrySelected);
+        user.save();
+      }
+      res.status(201).redirect('/profile');
+    })
+  },
 
   Profile: function(req, res){
 
@@ -116,18 +127,7 @@ var HomeController = {
       var vaccination_status = user.vaccination_status;
       res.render('home/profile', {country_list: countryListNames, fav_countries: fc, username: username, vaccination_status: vaccination_status, url: url})
     })
-  },
-
-  UpdateProfileFaveCountry: function(req, res){
-    var country = req.body.country
-    User.findOne({active: true}, function(err, user) {
-      if(err) { throw err}
-      user.fav_countries.push(country);
-      user.save();
-      res.status(201).redirect('/profile');
-  })
-
-}
+  }
 
 }
 
