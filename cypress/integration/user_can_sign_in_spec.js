@@ -12,7 +12,7 @@ describe('Home page', function() {
       cy.get('#sign-in-form').find('[name = "password"]').type('ilovethenorrf');
       cy.get('#sign-in-form').submit();
 
-      cy.contains('Sign out')
-      
+      cy.get('#fav-country-form').contains("Andorra")
+
     });
 });

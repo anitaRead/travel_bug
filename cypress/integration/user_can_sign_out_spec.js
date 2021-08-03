@@ -12,9 +12,10 @@ describe('Home page', function() {
       cy.get('#sign-in-form').find('[name = "password"]').type('coach4lyf');
       cy.get('#sign-in-form').submit();
 
-      cy.get('#sign-out-button').click();
-
-      cy.contains('Sign Up');
-      cy.contains('Sign In');
+      cy.get('#fav-country-form').contains("Andorra")
+      // cy.get('#sign-out-button').click();
+      //
+      // cy.contains('Sign Up');
+      // cy.contains('Sign In');
     });
 });

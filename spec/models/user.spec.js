@@ -94,15 +94,16 @@ describe('User model', function(){
   });
 
   it('can add a users favorite country', function(done){
-    var user = new User({ username: 'greg', email: 'greg@greg.com', password: 'gregory' });
+    var user = new User({ username: 'bob', email: 'bob@bob.com', password: 'notgreg' });
 
     user.save(function(err){
       if(err) {console.log(err) }
-      User.updateOne({username: 'greg'}, {fav_countries: 'Angola'}, function(err) {
+      User.updateOne({username: 'bob'}, {fav_countries: ["Angola", "Greenland"]}, function(err) {
         if (err) {throw err;}
         User.find(function(err, user) {
           if(err) {console.log(err) }
-          expect(user[4].fav_countries).toEqual('["Angola"]');
+          var result = Array.from(user[4].fav_countries);
+          expect(result).toEqual(["Angola","Greenland"]);
         });
         done();
       });
