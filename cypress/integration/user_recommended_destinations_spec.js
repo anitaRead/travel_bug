@@ -13,7 +13,7 @@ describe("Profile page", function() {
       cy.get("#sign-in-form").submit();
 
       cy.contains("Destinations recommended for you");
-      cy.get("#recommended-list").should("contain", ".recommended-list-item");
+      cy.get(".recommended-list").should("be.visible");
 
     });
 });

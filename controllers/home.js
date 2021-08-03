@@ -43,7 +43,7 @@ var HomeController = {
         users[i].active = false;
         users[i].save();
       }
-      res.status(201).redirect('/profile');
+      res.status(201).redirect('/sessions');
     });
   },
 
@@ -159,38 +159,23 @@ var HomeController = {
 
         User.findOne({active: true}, function(err, user) { 
           if(err) { throw err }
-          var vaxStatus = false;
+          var isVaxed = false;
           var email = user.email;
+          var vaccination_status = user.vaccination_status;
           var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
 
           if(user.vaccination_status === "vaccinated") {
-            vaxStatus = true;
+            isVaxed = true;
           } else {
-            vaxStatus = false;
+            isVaxed = false;
           }
-
-        
-
-        // User.find(function(err, users) {
-        //   if(err) { throw err }
-        //   var vaxStatus = false;
-        
-        //   for(var i=0; i<users.length; i++) {
-        //     if(users[i].active === true) {
-        //       if(users[i].vaccination_status === "vaccinated") {
-        //         vaxStatus = true;
-        //       } else {
-        //         vaxStatus = false;
-        //       }
-        //     } 
-        //   }
 
           var vaxList = getTopSix(greenList.concat(amberList));
           var unvaxList = getTopSix(greenList);
         
         
-          res.render('home/profile', { username: user.username, vaxList: vaxList, unvaxList: unvaxList, vaxStatus: vaxStatus, url: url});
-          // vaccination_status: user.vaccination_status,
+          res.render('home/profile', { username: user.username, vaccination_status: vaccination_status, vaxList: vaxList, unvaxList: unvaxList, isVaxed: isVaxed, url: url});
+
         });
         
       })
