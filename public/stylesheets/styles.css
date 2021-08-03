@@ -53,6 +53,10 @@ body {
     color: #000;
 }
 
+#username-form {
+    display: none;
+}
+
 @media (max-width: 576px) { 
     .explore-heading {
         margin-top: 10%;

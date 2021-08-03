@@ -6,6 +6,18 @@ let redList = document.querySelector("#red-list");
 let amberList = document.querySelector("#amber-list");
 let greenList = document.querySelector("#green-list");
 
+var usernameToggle = document.querySelector("#username-toggle");
+var usernameForm = document.querySelector("#username-form");
+
+usernameToggle.addEventListener("click", function() {
+  
+  if (usernameForm.style.display == "none"){
+    usernameForm.style.display = "block";
+  } else {
+    usernameForm.style.display = "none";
+  }
+})
+
 redButton.addEventListener("click", () => {
     amberList.style.display = "none";
     greenList.style.display = "none";
@@ -41,3 +53,7 @@ greenButton.addEventListener("click", () => {
     }
     
 })
+
+
+
+

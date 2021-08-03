@@ -1,0 +1,28 @@
+{{username}} 
+  <button id="username-toggle">Edit Username</button>
+  <form action="/edit/username" method="post" id="username-form" id="updateusername">
+  <input class="rounded" type="text" placeholder="Enter new username" name="username" required></input> 
+  <button type="submit" class="btn">Change</button>
+  </form>
+  
+
+<div class="m-b-25"> <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> </div>
+<a class="edit-pic" href='https://en.gravatar.com/'>Edit Picture</a>
+
+<h6>{{vaccination_status}}</h6>
+<form action="/edit/vaccination" method="post" class="vaccination_status">
+<label for="vaccine_status">Edit vaccine status:</label>
+  <select class="vaccination_status" name="vaccination_status">
+    <option value="Unvaccinated">Unvaccinated</option>
+    <option value="Vaccinated">Vaccinated</option>
+  </select>
+  <input type="submit" value="Submit">
+</form>
+
+
+
+
+
+   
+
+

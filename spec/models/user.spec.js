@@ -75,7 +75,7 @@ describe('User model', function(){
     });
   });
 
-  it('vaccination status can be assigned to a user', function(done){
+  it('vaccination status can be changed', function(done){
     var user = new User({ username: 'emma', email: 'emma@e.com', password: '123hello' });
 
     user.save(function(err){
