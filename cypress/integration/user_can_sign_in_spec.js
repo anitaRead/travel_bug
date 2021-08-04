@@ -1,4 +1,4 @@
-describe('Home page', function() {
+describe('Sign in page', function() {
     it('can sign in a user', function() {
       cy.visit('/');
       cy.contains('Sign Up').click({force:true});
@@ -12,7 +12,7 @@ describe('Home page', function() {
       cy.get('#sign-in-form').find('[name = "password"]').type('ilovethenorrf');
       cy.get('#sign-in-form').submit();
 
-      cy.get('#fav-country-form').contains("Andorra")
+      cy.contains("emma7563");
 
     });
 });
