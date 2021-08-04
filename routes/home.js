@@ -11,6 +11,9 @@ router.post('/sessions/new', HomeController.Signin);
 router.post('/sessions/end', HomeController.Signout);
 router.get('/explore', HomeController.List);
 router.get('/profile', HomeController.Profile);
+router.get('/edit', HomeController.EditPage);
+router.post('/edit/username', HomeController.EditUsername);
+router.post('/edit/vaccination', HomeController.EditVaccine);
 router.post('/addCountry', HomeController.UpdateProfileFaveCountry);
 
 
