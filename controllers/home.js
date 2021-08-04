@@ -3,9 +3,6 @@ var https = require('https');
 var countryList = require('country-list');
 var jsdom = require("jsdom");
 
-
-
-
 var HomeController = {
   Index: function(req, res) {
     res.render('home/index', { title: 'Travel Bug' });
@@ -30,35 +27,22 @@ var HomeController = {
   Signin: function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
-    User.find(function(err, users) {
-      if (err) { throw err; }
-      for(var i=0; i<users.length; i++) {
-        if(users[i].username === username) {
-          if(users[i].password === password) {
-            users[i].active = true;
-            users[i].save();
-            return res.status(201).redirect('/profile');
-          }
-        }
-        users[i].active = false;
-        users[i].save();      
+    User.findOne({username: username}, function(err, user) {
+      if(!user){
+        res.status(201).redirect('/sessions');
       }
-      res.status(201).redirect('/sessions');
+      else if(user.password === password) {
+        req.session.user_sid = user._id;
+        res.status(201).redirect('/profile');
+      }
     });
   },
 
   Signout: function(req, res) {
-    User.find(function(err, users) {
-      if(err) { throw err }
-      for(var i=0; i<users.length; i++) {
-        if(users[i].active === true) {
-            users[i].active = false;
-            users[i].save();
-            return res.status(201).redirect('/');
-        }
-      }
-      res.redirect('/');
-    });
+    if (req.session.user_sid) {
+      res.clearCookie('user_sid');
+      res.status(201).redirect('/');
+    }
   },
 
   List: function(req, res) {
@@ -99,11 +83,13 @@ var HomeController = {
         res.render('explore/index', { redList: redList, amberList: amberList, greenList: greenList })
       })
     })
+
   },
  
   Profile: function(req, res) {
     var url = 'https://www.gov.uk/api/content/guidance/red-amber-and-green-list-rules-for-entering-england';
     var gravatar = require('gravatar');
+    var userID = req.session.user_sid;
 
     https.get(url, function(response){
       var result = '';
@@ -156,7 +142,7 @@ var HomeController = {
           return topSix;
         }
 
-        User.findOne({active: true}, function(err, user) { 
+        User.findOne({_id: userID}, function(err, user) { 
           if(err) { throw err }
           var isVaxed = false;
           var username = user.username;
@@ -185,7 +171,12 @@ var HomeController = {
 
   UpdateProfileFaveCountry: function(req, res){
     var countrySelected = req.body.country
-    User.findOne({active: true}, function(err, user) {
+    var userID = req.session.user_sid
+    console.log(countrySelected);
+    console.log(userID);
+
+
+    User.findOne({_id: userID}, function(err, user) {
       if(err) { throw err}
       if(!user.fav_countries.includes(countrySelected)){
         user.fav_countries.push(countrySelected);
@@ -194,47 +185,13 @@ var HomeController = {
       res.status(201).redirect('/profile');
     })
   },
-  EditPage: function(req, res) {
-    var gravatar = require('gravatar');
-    
-    User.findOne({active: true}, function(err, user) { 
-      if(err) { throw err }
-
-      var email = user.email;
-      var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
-
-      res.render('home/edit', {username: user.username, vaccination_status: user.vaccination_status, url: url})
-    })
-  },
-
-  EditUsername: function(req, res){
-    var username = req.body.username
-  
-
-    User.updateOne({active: true}, {"username": username}, function(err){
-      if(err) { throw err; }
-
-      res.status(201).redirect('/edit')
-    })
-  },
-  EditVaccine: function(req, res){
-    var vaccination_status = req.body.vaccination_status
-    console.log(req.body)
-  
-    User.updateOne({active: true}, {"vaccination_status": vaccination_status}, function(err){
-      if(err) { throw err; }
-
-      res.status(201).redirect('/profile')
-    })
-  }
-}
-  // },
 
   // Profile: function(req, res){
 
   //   var gravatar = require('gravatar');
+  //   var userID = req.session.user_sid
 
-  //   User.findOne({active: true}, function(err, user) {
+  //   User.findOne({_id: userID}, function(err, user) {
   //     if(err) { throw err}
   //     var countryListNames = countryList.getNames();
   //     var email = user.email;
@@ -246,40 +203,43 @@ var HomeController = {
   //   })
   // },
 
-  // EditPage: function(req, res) {
-  //   var gravatar = require('gravatar');
-    
-  //   User.findOne({active: true}, function(err, user) { 
-  //     if(err) { throw err }
+  EditPage: function(req, res) {
+    var gravatar = require('gravatar');
 
-  //     var email = user.email;
-  //     var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
+    var userID = req.session.user_sid
 
-  //     res.render('home/edit', {username: user.username, vaccination_status: user.vaccination_status, url: url})
-  //   })
-  // },
+    User.findOne({_id: userID}, function(err, user) {
+      if(err) { throw err }
 
-  // EditUsername: function(req, res){
-  //   var username = req.body.username
-  
+      var email = user.email;
+      var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
 
-  //   User.updateOne({active: true}, {"username": username}, function(err){
-  //     if(err) { throw err; }
+      res.render('home/edit', {username: user.username, vaccination_status: user.vaccination_status, url: url})
+    })
+  },
 
-  //     res.status(201).redirect('/edit')
-  //   })
-  // },
+  EditUsername: function(req, res){
+    var username = req.body.username
 
-  // EditVaccine: function(req, res){
-  //   var vaccination_status = req.body.vaccination_status
-  //   console.log(req.body)
-  
-  //   User.updateOne({active: true}, {"vaccination_status": vaccination_status}, function(err){
-  //     if(err) { throw err; }
+    var userID = req.session.user_sid
+    User.updateOne({_id: userID}, {"username": username}, function(err){
+      if(err) { throw err; }
 
-  //     res.status(201).redirect('/profile')
-  //   })
-  // }
+      res.status(201).redirect('/profile/edit')
+    })
+  },
+  EditVaccine: function(req, res){
+    var vaccination_status = req.body.vaccination_status
+    console.log(req.body)
+
+    var userID = req.session.user_sid
+    User.updateOne({_id: userID}, {"vaccination_status": vaccination_status}, function(err){
+      if(err) { throw err; }
+
+      res.status(201).redirect('/profile')
+    })
+  }
+}
 
 
 

@@ -24,6 +24,16 @@ body {
     border-bottom: 2px solid #d3d3d3;
 }
 
+/* Landing page */
+
+.landing-page {
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 100%, #000000 100%), url("../images/beach.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 /* Sign up page */
 
  .sign-up-page {
