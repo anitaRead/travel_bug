@@ -15,11 +15,11 @@ describe('User model', function(){
     var user = new User({ username: 'anita', email: 'anita600@a.com', password: 'hello123'});
 
     user.save(function(err){
-      if(err) { console.log(err) } 
+      if(err) { console.log(err) }
 
       User.find(function(err, user) {
         if(err) { console.log(err) }
-        
+
         expect(user[0]).toMatchObject({ username: 'anita', email: 'anita600@a.com', password: 'hello123', active: false, vaccination_status: 'unvaccinated' });
 
         done();
@@ -27,13 +27,13 @@ describe('User model', function(){
 
     });
   });
-  
+
   it('can sign in a user', function(done){
 
     var user = new User({ username: 'kelvin', email: 'kelvin@example.com', password: 'nicolasturgeon1'});
 
     user.save(function(err){
-      if(err) { console.log(err) } 
+      if(err) { console.log(err) }
 
       User.find(function(err, user) {
         if(err) { console.log(err) }
@@ -56,7 +56,7 @@ describe('User model', function(){
     var user = new User({ username: 'ehelsan', email: 'ehelsan@example.com', password: 'LOOOOOL' });
 
     user.save(function(err){
-      if(err) { console.log(err) } 
+      if(err) { console.log(err) }
 
       User.find(function(err, user) {
         if(err) { console.log(err) }
@@ -79,17 +79,34 @@ describe('User model', function(){
     var user = new User({ username: 'emma', email: 'emma@e.com', password: '123hello' });
 
     user.save(function(err){
-      if(err) { console.log(err) } 
+      if(err) { console.log(err) }
 
       User.updateOne({username: 'emma'}, {vaccination_status: 'Vaccinated'}, function(err) {
         if (err) {throw err;}
-        
+
           User.find(function(err, user) {
             if(err) { console.log(err) } 
             expect(user[3].vaccination_status).toEqual('Vaccinated');
           });
         done();
-      }); 
+      });
+    });
+  });
+
+  it('can add a users favorite country', function(done){
+    var user = new User({ username: 'bob', email: 'bob@bob.com', password: 'notgreg' });
+
+    user.save(function(err){
+      if(err) {console.log(err) }
+      User.updateOne({username: 'bob'}, {fav_countries: ["Angola", "Greenland"]}, function(err) {
+        if (err) {throw err;}
+        User.find(function(err, user) {
+          if(err) {console.log(err) }
+          var result = Array.from(user[4].fav_countries);
+          expect(result).toEqual(["Angola","Greenland"]);
+        });
+        done();
+      });
     });
   });
 });

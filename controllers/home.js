@@ -1,6 +1,6 @@
 var User = require('../models/user');
 var https = require('https');
-// var countryList = require('country-list');
+var countryList = require('country-list');
 var jsdom = require("jsdom");
 
 
@@ -38,8 +38,8 @@ var HomeController = {
             users[i].active = true;
             users[i].save();
             return res.status(201).redirect('/profile');
-          } 
-        }  
+          }
+        }
         users[i].active = false;
         users[i].save();      
       }
@@ -55,7 +55,7 @@ var HomeController = {
             users[i].active = false;
             users[i].save();
             return res.status(201).redirect('/');
-        } 
+        }
       }
       res.redirect('/');
     });
@@ -64,11 +64,11 @@ var HomeController = {
   List: function(req, res) {
 
     var url = 'https://www.gov.uk/api/content/guidance/red-amber-and-green-list-rules-for-entering-england';
-    
+
 
     https.get(url, function(response){
       var result = '';
-      
+
       response.on('data', function(data){
         result += data;
       })
@@ -91,30 +91,41 @@ var HomeController = {
 
           return countries;
         }
-        
+
         var redList = getCountries(doc, 0);
         var amberList = getCountries(doc, 1);
         var greenList = getCountries(doc, 2);
-        
+
         res.render('explore/index', { redList: redList, amberList: amberList, greenList: greenList })
       })
     })
-    
   },
- 
-  
-  Profile: function(req,res) {
+
+  UpdateProfileFaveCountry: function(req, res){
+    var countrySelected = req.body.country
+    User.findOne({active: true}, function(err, user) {
+      if(err) { throw err}
+      if(!user.fav_countries.includes(countrySelected)){
+        user.fav_countries.push(countrySelected);
+        user.save();
+      }
+      res.status(201).redirect('/profile');
+    })
+  },
+
+  Profile: function(req, res){
 
     var gravatar = require('gravatar');
-    
-    User.findOne({active: true}, function(err, user) { 
-      if(err) { throw err }
 
+    User.findOne({active: true}, function(err, user) {
+      if(err) { throw err}
+      var countryListNames = countryList.getNames();
       var email = user.email;
-
       var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
-
-      res.render('home/profile', {username: user.username, vaccination_status: user.vaccination_status, url: url})
+      var fc = user.fav_countries;
+      var username = user.username;
+      var vaccination_status = user.vaccination_status;
+      res.render('home/profile', {country_list: countryListNames, fav_countries: fc, username: username, vaccination_status: vaccination_status, url: url})
     })
   },
 
@@ -152,6 +163,7 @@ var HomeController = {
       res.status(201).redirect('/profile')
     })
   }
-};
+
+}
 
 module.exports = HomeController;
