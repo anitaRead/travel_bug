@@ -83,25 +83,25 @@
         <div class="row">
             <div class="col-md-12 recommended-list">
                 <div class="row d-flex flex-row justify-content-center">
-                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[0]}}">
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[0].[0]}}">
                         <p>{{unvaxList.[0]}}</p>
                     </div>
-                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[1]}}">
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[1].[0]}}">
                         <p>{{unvaxList.[1]}}</p>
                     </div>
-                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[2]}}">
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[2].[0]}}">
                         <p>{{unvaxList.[2]}}</p>
                     </div>
                 </div>
 
                 <div class="row d-flex flex-row justify-content-center">
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[3]}}">
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[3].[0]}}">
                         <p>{{unvaxList.[3]}}</p>
                     </div>
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[4]}}">
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[4].[0]}}">
                         <p>{{unvaxList.[4]}}</p>
                     </div>
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[5]}}">
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[5].[0]}}">
                         <p>{{unvaxList.[5]}}</p>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
         {{!-- Unvax modals --}}
         {{#each unvaxList}}
             <!-- Modal -->
-            <div class="modal fade" id="{{this}}" tabindex="-1" aria-labelledby="exampleLabel" aria-hidden="true">
+            <div class="modal fade" id="{{this.[0]}}" tabindex="-1" aria-labelledby="exampleLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
