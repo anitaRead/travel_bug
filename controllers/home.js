@@ -31,9 +31,11 @@ var HomeController = {
     var username = req.body.username;
     var password = req.body.password;
     User.findOne({username: username}, function(err, user) {
-      if(user.password === password) {
-        req.session.user_sid = user._id;
-        res.status(201).redirect('/profile');
+      if(user.username){
+        if(user.password === password) {
+          req.session.user_sid = user._id;
+          res.status(201).redirect('/profile');
+        }
       }
     });
   },
@@ -91,7 +93,9 @@ var HomeController = {
 
     var gravatar = require('gravatar');
 
-    User.findOne({active: true}, function(err, user) {
+    var userID = req.session.user_sid
+
+    User.findOne({_id: userID}, function(err, user) {
       if(err) { throw err }
 
       var email = user.email;

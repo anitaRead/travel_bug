@@ -9,6 +9,7 @@ var session = require('express-session');
 
 var homeRouter = require('./routes/home');
 var sessionsRouter = require('./routes/sessions');
+var signUpRouter = require('/routes/signUp')
 
 var app = express();
 
@@ -40,8 +41,26 @@ var sessionChecker = (req, res, next) => {
     res.redirect('/sessions');
   }};
 
+  app.use(session({
+    key: 'user_sid',
+    secret: 'somerandonstuffs',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 600000
+    }
+  }));
+
+  app.use((req, res, next) => {
+    if (!req.cookies.user_sid) {
+      res.clearCookie('user_sid');
+    }
+  next();
+});
+
 // route setup
 app.use('/sessions', sessionsRouter);
+app.use('/signup', signUpRouter)
 app.use('/', sessionChecker, homeRouter);
 
 // catch 404 and forward to error handler
