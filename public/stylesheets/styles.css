@@ -163,7 +163,9 @@ body {
     filter: brightness(100%);
 }
 
-
+/* #username-form {
+    display: none;
+} */
 
 
 /* Media queries for mobile */

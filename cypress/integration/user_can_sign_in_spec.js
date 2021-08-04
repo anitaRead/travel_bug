@@ -1,4 +1,4 @@
-describe('Home page', function() {
+describe('Sign in page', function() {
     it('can sign in a user', function() {
       cy.visit('/');
       cy.contains('Sign Up').click({force:true});

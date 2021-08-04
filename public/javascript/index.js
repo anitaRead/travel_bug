@@ -1,3 +1,4 @@
+
 let redButton = document.querySelector("#red-button");
 let amberButton = document.querySelector("#amber-button");
 let greenButton = document.querySelector("#green-button");
@@ -56,3 +57,19 @@ greenButton.addEventListener("click", () => {
     }
     
 })
+
+// let usernameToggle = document.querySelector("#username-toggle");
+// let usernameForm = document.querySelector("#username-form");
+
+// usernameToggle.addEventListener("click", function() {
+  
+//   if(usernameForm.style.display == "none"){
+//     usernameForm.style.display = "block";
+//   } else {
+//     usernameForm.style.display = "none";
+//   }
+// })
+
+
+
+
