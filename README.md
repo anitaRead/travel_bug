@@ -5,7 +5,8 @@ For our final project, we decided to create a web application, Travel Bug, that 
 
 It uses:
 - [Express](https://expressjs.com/) web framework for Node.js.
-- [Express-session](https://github.com/expressjs/session) Create a session middleware with the given options.
+- [Express-Session](https://github.com/expressjs/session) to create sessions to track logged in user.
+- [Cookie-Parser](https://github.com/expressjs/cookie-parser) to populate req.cookies with logged in user details. 
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
 - [Handlebars](https://handlebarsjs.com/) to render view templates.
 - [Mongoose](https://mongoosejs.com) to model objects in MongoDB.
