@@ -19,7 +19,6 @@ countries.forEach(function(country){
         let path = imageData.results[0].urls.regular.toString();
         country.style.backgroundImage = `url(${path})`;
     });
-
 });
 
 redButton.addEventListener("click", () => {
