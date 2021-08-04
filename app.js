@@ -9,7 +9,7 @@ var session = require('express-session');
 
 var homeRouter = require('./routes/home');
 var sessionsRouter = require('./routes/sessions');
-var signUpRouter = require('/routes/signUp')
+var signUpRouter = require('./routes/signUp');
 
 var app = express();
 

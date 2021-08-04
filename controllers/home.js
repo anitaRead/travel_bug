@@ -1,6 +1,6 @@
 var User = require('../models/user');
 var https = require('https');
-// var countryList = require('country-list');
+var countryList = require('country-list');
 var jsdom = require("jsdom");
 
 
@@ -88,24 +88,35 @@ var HomeController = {
 
   },
 
+  UpdateProfileFaveCountry: function(req, res){
+    var countrySelected = req.body.country
+    User.findOne({active: true}, function(err, user) {
+      if(err) { throw err}
+      if(!user.fav_countries.includes(countrySelected)){
+        user.fav_countries.push(countrySelected);
+        user.save();
+      }
+      res.status(201).redirect('/profile');
+    })
+  },  
 
-  Profile: function(req,res) {
+  Profile: function(req, res){
 
     var gravatar = require('gravatar');
-
     var userID = req.session.user_sid
 
     User.findOne({_id: userID}, function(err, user) {
-      if(err) { throw err }
-
+      if(err) { throw err}
+      var countryListNames = countryList.getNames();
       var email = user.email;
-
       var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
-
-      res.render('home/profile', {username: user.username, vaccination_status: user.vaccination_status, url: url})
+      var fc = user.fav_countries;
+      var username = user.username;
+      var vaccination_status = user.vaccination_status;
+      res.render('home/profile', {country_list: countryListNames, fav_countries: fc, username: username, vaccination_status: vaccination_status, url: url})
     })
   }
 
-};
+}
 
 module.exports = HomeController;
