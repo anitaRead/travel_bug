@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 // var { getCode, getName } = require('country-list');
-// var helpers = require('handlebars-helpers')();
+
 
 
 var homeRouter = require('./routes/home');
