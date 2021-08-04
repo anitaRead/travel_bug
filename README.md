@@ -16,6 +16,7 @@ It uses:
 
 ### User Stories
 
+
 #### Explore
 
 ```
@@ -31,10 +32,53 @@ I want to see a list of countries on the amber/amber plus list
 ```
 
 ```
-As a global jetsetter 
-So that I can travel anywhere 
+As a global jetsetter
+So that I can travel anywhere
 I want to see a list of countries on the red list
+```
 
+#### Profile
+
+```
+As a prospective traveller
+So that I can use travel bug
+I would like to be able to sign up
+```
+
+```
+As a travel bug user
+So that I can view my user profile
+I would like to sign in
+```
+
+```
+As a travel bug user
+So that I can change my travel bug username
+I would like to edit my profile username
+```
+
+```
+As a travel bug user
+So that I can add my vaccination status
+I would like to save my vaccination status to my profile
+```
+
+```
+As a travel bug user
+So that I can update my vaccination status
+I would like to update my vaccination status on my profile
+```
+
+```
+As a travel bug user
+So that I can personalise my user profile
+I want to be able to set my profile picture
+```
+
+```
+As a travel bug user
+So that I am able to view my profile page details
+I want to see my username, profile picture & vaccination status
 ```
 
 #### Search
@@ -43,6 +87,18 @@ I want to see a list of countries on the red list
 As a global jetsetter
 So that I can see what destinations are available to me
 I want to see a list of all possible destinations for UK tourists
+```
+
+```
+As a travel bug user
+So that I can travel quarantine free
+I want to see a list of my top five recommended destinations
+```
+
+```
+As a travel bug user
+So that I can easily view my favourite places
+I want to set and see a list of my favourite destinations
 ```
 
 ```
@@ -76,9 +132,7 @@ I want to see a list of countries on the green, amber and amber plus lists
 ```
 
 ```
-As a vaccinated user 
+As a vaccinated user
 So that I can travel anywhere
 I want to see a list of countries on the green, amber and red lists
 ```
-
-
