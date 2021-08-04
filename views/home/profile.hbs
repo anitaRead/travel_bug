@@ -1,13 +1,110 @@
-<h1> hello! </h1>
+<div class="profile-page">
+    
+    <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg px-5">
+    <a class="navbar-brand" href="/">
+        <i class="fad fa-globe-americas fa-2x"></i>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse px-1" id="navbarText">
+        <ul class="navbar-nav align-items-center">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/explore">Explore</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+            </li>
+        </ul>
+    </div>
+    <div class="d-flex flex-row justify-content-end">
+        <form action="/sessions/end" method="post">
+            <button class="btn btn-outline-danger btn-sm mx-4" type="submit" id="sign-out-button"><b>Sign out</b></button>
+        </form>
+    </div>
+  </nav>
+    {{!-- User profile --}}
+    <div class="row d-flex flex-row justify-content-center">
+        <div class="col-md-12 user-info">
+                <h1>welcome, {{username}} </h1>
+                <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> 
+                <h6>vaccination status: {{vaccination_status}}</h6>
+        </div>   
+        <div class="col-md-12 down-icon">
+            <a href="#main-user-section"><i class="fad fa-chevron-double-down fa-4x"></i></a>
+        </div>
+    </div> 
 
-<div class="m-b-25"> <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> </div>
+    <div id="main-user-section" class="white-container">
+    <h1 class="recommended-header pb-5">Destinations recommended for you</h1>
+    {{#if vaxStatus}}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 recommended-list">
+                <div class="row">
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <p>{{vaxList.[0]}}</p>
+                    </div>
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <p>{{vaxList.[1]}}</p>
+                    </div>
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <p>{{vaxList.[2]}}</p>
+                    </div>
+                </div>
 
-<h5>welcome, {{username}} </h5>
-<h6>vaccination status: {{vaccination_status}}</h6>
+                <div class="row justify-content-end">
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <p>{{vaxList.[3]}}</p>
+                    </div>
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <p>{{vaxList.[4]}}</p>
+                    </div>
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <p>{{vaxList.[5]}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
- <form action="/sessions/end" method="post">
-    <button class="btn btn-outline-danger btn-sm mx-4" type="submit" id="sign-out-button"><b>Sign out</b></button>
-  </form>
+    {{else}}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 recommended-list">
+                <div class="row d-flex flex-row justify-content-center">
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center">
+                        <p>{{unvaxList.[0]}}</p>
+                    </div>
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center">
+                        <p>{{unvaxList.[1]}}</p>
+                    </div>
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center">
+                        <p>{{unvaxList.[2]}}</p>
+                    </div>
+                </div>
+
+                <div class="row d-flex flex-row justify-content-center">
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                        <p>{{unvaxList.[3]}}</p>
+                    </div>
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                        <p>{{unvaxList.[4]}}</p>
+                    </div>
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
+                        <p>{{unvaxList.[5]}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+</div>
+
   
 <a class="edit-profile-link" href="/profile/edit">Edit Profile <i class="fas fa-pencil-alt fa-1x"></i></a>
 
@@ -22,3 +119,7 @@
 </form>
 <h2>{{username}}'s selected favorite countries</h2>
 {{fav_countries}}
+
+
+
+</div>

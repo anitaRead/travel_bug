@@ -12,8 +12,7 @@ describe('Profile page', function() {
     cy.get('#sign-in-form').find('[name = "password"]').type('josuejosue');
     cy.get('#sign-in-form').submit();
 
-    cy.contains('hello!')
-    cy.contains('vaccination status: unvaccinated')
+    cy.contains('vaccination status: unvaccinated');
 
   });
 });

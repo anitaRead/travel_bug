@@ -12,7 +12,7 @@ describe('Sign in page', function() {
       cy.get('#sign-in-form').find('[name = "password"]').type('ilovethenorrf');
       cy.get('#sign-in-form').submit();
 
-      cy.contains("emma7563");
-
+      cy.contains('emma7563');
+      
     });
 });

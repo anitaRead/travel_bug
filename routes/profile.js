@@ -3,7 +3,6 @@ var router = express.Router();
 
 var HomeController = require('../controllers/home');
 
-router.get('/explore', HomeController.List);
 router.get('/', HomeController.Profile);
 router.get('/edit', HomeController.EditPage);
 router.post('/edit/username', HomeController.EditUsername);
