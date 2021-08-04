@@ -14,8 +14,10 @@ It uses:
 - [Mongoose](https://mongoosejs.com) to model objects in MongoDB.
 - [ESLint](https://eslint.org) for linting.
 - [Jest](https://jestjs.io/) for testing.
+- [JSDOM](https://github.com/jsdom/jsdom) is a pure-JavaScript implementation of many web standards
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 - [API](https://www.gov.uk/api/content/foreign-travel-advice) for fetching GOVUK data.
+- [Gravatar](https://github.com/emerleite/node-gravatar) A library to generate Gravatar URLs in Node.js Based on gravatar specs
 
 
 ### User Stories
