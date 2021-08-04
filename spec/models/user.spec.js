@@ -81,12 +81,12 @@ describe('User model', function(){
     user.save(function(err){
       if(err) { console.log(err) } 
 
-      User.updateOne({username: 'emma'}, {vaccination_status: 'fully vaccinated'}, function(err) {
+      User.updateOne({username: 'emma'}, {vaccination_status: 'Vaccinated'}, function(err) {
         if (err) {throw err;}
         
           User.find(function(err, user) {
             if(err) { console.log(err) } 
-            expect(user[3].vaccination_status).toEqual('fully vaccinated');
+            expect(user[3].vaccination_status).toEqual('Vaccinated');
           });
         done();
       }); 
