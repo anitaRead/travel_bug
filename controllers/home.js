@@ -3,6 +3,7 @@ var https = require('https');
 var countryList = require('country-list');
 var jsdom = require("jsdom");
 
+
 var HomeController = {
   Index: function(req, res) {
     res.render('home/index', { title: 'Travel Bug' });
@@ -111,7 +112,10 @@ var HomeController = {
           var tableRows = table.getElementsByTagName("tbody")[0].children;
 
           for(var i=0; i<tableRows.length; i++){
-            countries.push(tableRows[i].firstElementChild.textContent);
+            var countryName = tableRows[i].firstElementChild.textContent;
+            var countryId = countryName.replace(/,| /g,"");
+            var countryObj = { id: countryId, name: countryName };
+            countries.push(countryObj);
           }
 
           return countries;
@@ -121,7 +125,7 @@ var HomeController = {
         var amberList = getCountries(doc, 1);
         var noFlyList = ["Afghanistan", "Burkina Faso", "Central African Republic", "Haiti", "Iran", "Iraq", "Libya", "Mali",
         "North Korea", "Mali", "Somalia", "South Sudan", "Syria", "Venezuela", "Yemen", "El Salvador", "Chad", "Honduras", 
-        "Nicaragua", "Congo", "Congo (Democratic Republic)", "The Occupied Palestinian Territories", "Sudan", "Sudan", "Niger", 
+        "Nicaragua", "Congo", "Congo (Democratic Republic)", "The Occupied Palestinian Territories", "Sudan", "Niger", 
         "Mozambique", "Ethiopia", "Eritrea", "Cameroon", "Pakistan", "Myanmar", "Ukraine", "Belarus", "Colombia", "Eswatini", 
         "Liberia", "Jordan"]
 
@@ -132,7 +136,7 @@ var HomeController = {
           while(randArr.length < 6){
             var rand =  Math.floor(Math.random() * countries.length);
             if(!randArr.includes(rand)) {
-              if(!noFlyList.includes(countries[rand])){
+              if(!noFlyList.includes(countries[rand].name)){
                 randArr.push(rand);
                 topSix.push(countries[rand]);
               }
