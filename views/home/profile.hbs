@@ -106,6 +106,18 @@
 </div>
 
 
+<form id="fav-country-form" action="/addCountry" method="post">
+  <label for="fav-country">Select your favorite country</label>
+  <select name="country" size="10" required>
+    {{#each country_list}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+  <input type="submit" value="Submit">
+</form>
+<h2>{{username}}'s selected favorite countries</h2>
+{{fav_countries}}
+
+
 
 </div>
-
