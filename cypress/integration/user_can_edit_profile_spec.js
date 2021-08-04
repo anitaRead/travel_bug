@@ -12,9 +12,9 @@ describe('Edit profile page', function() {
     cy.get('#sign-in-form').find('[name = "password"]').type('annieruok');
     cy.get('#sign-in-form').submit();
 
+    cy.contains('Profile').click();
     cy.get('.edit-profile-link').click();
     cy.contains('anita24');
-    // cy.get('#username-toggle').dblclick();
     cy.get('#username-form').find('[name = "username"]').type('anita5000');
     cy.get('#username-form').submit();
     cy.contains('anita5000');

@@ -13,9 +13,12 @@ describe('Sign out page', function() {
       cy.get('#sign-in-form').submit();
 
       cy.get('#fav-country-form').contains("Andorra")
-      cy.get('#sign-out-button').click();
+      cy.contains('Profile').click();
+      cy.contains('Sign Out').click();
       
+      cy.contains('Explore');
       cy.contains('Sign Up');
       cy.contains('Sign In');
+      cy.contains('Profile');
     });
 });

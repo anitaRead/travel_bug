@@ -9,8 +9,13 @@ body {
     background-color: transparent;
 }
 
+
+.navbar-toggler {
+    color: #fff;
+}
+
 .fa-globe-americas {
-    color: #ffc107;
+    color: darkgreen;
 }
 
 .nav-link {
@@ -24,11 +29,28 @@ body {
     border-bottom: 2px solid #d3d3d3;
 }
 
+.dropdown-menu {
+    background-color: transparent;
+}
+
+.dropdown-item {
+    color: #F5F5F5; 
+    font-weight: 600;
+    font-size: 1.2rem;
+    border: 0px;
+}
+
+.dropdown-item:hover {
+    color: #fff;
+    border-bottom: 2px solid #d3d3d3;
+    background-color: transparent;
+}
+
 /* Landing page */
 
 #landing-page {
     height: 100vh;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 100%, #000000 100%), url("../images/beach.jpg");
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 100%, #000000 100%), url("../images/plane.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -172,6 +194,32 @@ body {
     font-weight: 700;
     filter: brightness(100%);
 }
+
+/* Edit profile page */
+
+.edit-profile-page {
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 100%, #000000 100%), url("../images/hk3.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.user-info {
+    margin-top: 20vh;
+    color: #fff;
+    font-weight: 700;
+}
+
+.editpic {
+    font-weight: 400;
+}
+
+.editstatus {
+    font-weight: 400;
+}
+
 
 /* #username-form {
     display: none;
