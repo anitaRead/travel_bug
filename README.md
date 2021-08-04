@@ -92,7 +92,7 @@ I want to see a list of all possible destinations for UK tourists
 ```
 As a travel bug user
 So that I can travel quarantine free
-I want to see a list of my top five recommended destinations
+I want to see a list of my top six recommended destinations
 ```
 
 ```
@@ -102,6 +102,12 @@ I want to set and see a list of my favourite destinations
 ```
 
 ```
+As a travel bug user
+So that I can view the status of my holiday destination
+I want a modal to pop up when I selected my desired country
+```
+
+<!-- ```
 As an unvaccinated user
 So that I do not have to quarantine
 I want to see a list of countries on the green list
@@ -135,4 +141,4 @@ I want to see a list of countries on the green, amber and amber plus lists
 As a vaccinated user
 So that I can travel anywhere
 I want to see a list of countries on the green, amber and red lists
-```
+``` -->
