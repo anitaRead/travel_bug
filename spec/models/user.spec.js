@@ -75,18 +75,18 @@ describe('User model', function(){
     });
   });
 
-  it('vaccination status can be assigned to a user', function(done){
+  it('vaccination status can be changed', function(done){
     var user = new User({ username: 'emma', email: 'emma@e.com', password: '123hello' });
 
     user.save(function(err){
       if(err) { console.log(err) }
 
-      User.updateOne({username: 'emma'}, {vaccination_status: 'fully vaccinated'}, function(err) {
+      User.updateOne({username: 'emma'}, {vaccination_status: 'Vaccinated'}, function(err) {
         if (err) {throw err;}
 
           User.find(function(err, user) {
-            if(err) { console.log(err) }
-            expect(user[3].vaccination_status).toEqual('fully vaccinated');
+            if(err) { console.log(err) } 
+            expect(user[3].vaccination_status).toEqual('Vaccinated');
           });
         done();
       });

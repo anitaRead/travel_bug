@@ -1,4 +1,4 @@
-describe('Home page', function() {
+describe('Profile page', function() {
     it('can add favorite country', function() {
       cy.visit('/');
       cy.contains('Sign Up').click({force:true});

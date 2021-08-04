@@ -39,7 +39,7 @@ var sessionChecker = (req, res, next) => {
   {
     next();
   } else {
-    res.redirect('/sessions');
+    res.redirect('/');
   }};
 
   app.use(session({

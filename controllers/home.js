@@ -121,6 +121,44 @@ var HomeController = {
       var vaccination_status = user.vaccination_status;
       res.render('home/profile', {country_list: countryListNames, fav_countries: fc, username: username, vaccination_status: vaccination_status, url: url})
     })
+  },
+
+  EditPage: function(req, res) {
+    var gravatar = require('gravatar');
+
+    var userID = req.session.user_sid
+
+    User.findOne({_id: userID}, function(err, user) {
+      if(err) { throw err }
+
+      var email = user.email;
+      var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
+
+      res.render('home/edit', {username: user.username, vaccination_status: user.vaccination_status, url: url})
+    })
+  },
+
+  EditUsername: function(req, res){
+    var username = req.body.username
+
+    var userID = req.session.user_sid
+    User.updateOne({_id: userID}, {"username": username}, function(err){
+      if(err) { throw err; }
+
+      res.status(201).redirect('/profile/edit')
+    })
+  },
+
+  EditVaccine: function(req, res){
+    var vaccination_status = req.body.vaccination_status
+    console.log(req.body)
+
+    var userID = req.session.user_sid
+    User.updateOne({_id: userID}, {"vaccination_status": vaccination_status}, function(err){
+      if(err) { throw err; }
+
+      res.status(201).redirect('/profile')
+    })
   }
 
 }
