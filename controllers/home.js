@@ -31,11 +31,12 @@ var HomeController = {
     var username = req.body.username;
     var password = req.body.password;
     User.findOne({username: username}, function(err, user) {
-      if(user.username){
-        if(user.password === password) {
-          req.session.user_sid = user._id;
-          res.status(201).redirect('/profile');
-        }
+      if(!user){
+        res.status(201).redirect('/sessions');
+      }
+      else if(user.password === password) {
+        req.session.user_sid = user._id;
+        res.status(201).redirect('/profile');
       }
     });
   },
@@ -90,7 +91,12 @@ var HomeController = {
 
   UpdateProfileFaveCountry: function(req, res){
     var countrySelected = req.body.country
-    User.findOne({active: true}, function(err, user) {
+    var userID = req.session.user_sid
+    console.log(countrySelected);
+    console.log(userID);
+
+
+    User.findOne({_id: userID}, function(err, user) {
       if(err) { throw err}
       if(!user.fav_countries.includes(countrySelected)){
         user.fav_countries.push(countrySelected);
@@ -98,7 +104,7 @@ var HomeController = {
       }
       res.status(201).redirect('/profile');
     })
-  },  
+  },
 
   Profile: function(req, res){
 
