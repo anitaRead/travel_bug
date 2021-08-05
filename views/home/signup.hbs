@@ -1,23 +1,38 @@
 <div id="sign-up-page">
   <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg px-5">
+  <nav class="navbar navbar-expand-lg px-5 d-print">
     <a class="navbar-brand" href="/">
         <i class="fad fa-globe-americas fa-2x"></i>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-target="#navbarNavAltMarkup" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse px-1" id="navbarText">
+    <div class="collapse navbar-collapse px-1" id="navbarSupportedContent">
         <ul class="navbar-nav align-items-center">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/explore">Explore</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
+                <a class="nav-link" href="/sessions">Sign In</a>
             </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Profile </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li> <a class="dropdown-item" href="/profile">My Profile <i class="fa fa-user-circle" aria-hidden="true"></i> </a> </li>
+              <li> <hr class="dropdown-divider"> </li>
+              <li> <a class="dropdown-item" href="/profile/edit"> Edit Profile <i class="fas fa-pencil-alt fa-1x"></i></a></li>
+              <li> <hr class="dropdown-divider"> </li>
+              <li> <a class="dropdown-item" href="/profile/#main-user-section">Inspiration <i class="fa fa-paper-plane" aria-hidden="true"></i> </a> </li>
+              <li> <hr class="dropdown-divider"> </li>
+              <li> <a class="dropdown-item" href="/profile/#fav-country-form">Favourites <i class="fa fa-heart" aria-hidden="true"></i> </a> </li>
+              <li> <hr class="dropdown-divider"> </li>
+              <li>
+                <form action="/sessions/end" method="post"> 
+                  <button class="dropdown-item btn-danger" href="#">Sign Out <i class="fa fa-sign-out" aria-hidden="true"></i> </button> 
+                </form>
+              </li>  
+            </ul>
+          </li>
         </ul>
     </div>
   </nav>
@@ -31,9 +46,4 @@
       <input type='submit' value='Submit' class='btn btn-outline-danger mt-4'>
     </form>
   </div>
-
-  <form action="/sessions/end" method="post">
-      <button class="btn btn-outline-success btn-sm mx-4" type="submit" id="sign-out-button"><b>Sign out</b></button>
-  </form>
-
 </div>

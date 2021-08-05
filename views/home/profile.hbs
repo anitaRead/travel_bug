@@ -1,32 +1,40 @@
 <div class="profile-page">
-    
-    <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg px-5">
-    <a class="navbar-brand" href="/">
-        <i class="fad fa-globe-americas fa-2x"></i>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse px-1" id="navbarText">
+
+  <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg px-5 d-print">
+      <a class="navbar-brand" href="/">
+          <i class="fad fa-globe-americas fa-2x"></i>
+      </a>
+      <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-target="#navbarNavAltMarkup" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse px-1" id="navbarSupportedContent">
         <ul class="navbar-nav align-items-center">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/explore">Explore</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
-            </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/explore">Explore</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Profile </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li> <a class="dropdown-item" href="/profile">My Profile <i class="fa fa-user-circle" aria-hidden="true"></i> </a> </li>
+              <li> <hr class="dropdown-divider"> </li>
+              <li> <a class="dropdown-item edit-profile-link" href="/profile/edit"> Edit Profile <i class="fas fa-pencil-alt fa-1x"></i></a></li>
+              <li> <hr class="dropdown-divider"> </li>
+              <li> <a class="dropdown-item" href="/profile/#main-user-section">Inspiration <i class="fa fa-paper-plane" aria-hidden="true"></i> </a> </li>
+              <li> <hr class="dropdown-divider"> </li>
+              <li> <a class="dropdown-item" href="/profile/#fav-country-form">Favourites <i class="fa fa-heart" aria-hidden="true"></i> </a> </li>
+              <li> <hr class="dropdown-divider"> </li>
+              <li>
+                <form action="/sessions/end" method="post">
+                  <button class="dropdown-item btn-danger" href="#">Sign Out <i class="fa fa-sign-out" aria-hidden="true"></i> </button>
+                </form>
+              </li>
+            </ul>
+          </li>
         </ul>
-    </div>
-    <div class="d-flex flex-row justify-content-end">
-        <form action="/sessions/end" method="post">
-            <button class="btn btn-outline-danger btn-sm mx-4" type="submit" id="sign-out-button"><b>Sign out</b></button>
-        </form>
-    </div>
-  </nav>
+      </div>
+    </nav>
+
     {{!-- User profile --}}
     <div class="row d-flex flex-row justify-content-center">
         <div class="col-md-12 user-info">
@@ -38,7 +46,7 @@
         <div class="col-md-12 down-icon">
             <a href="#inspiration-section"><i class="fad fa-chevron-double-down fa-4x"></i></a>
         </div>
-    </div> 
+    </div>
 
  
  
@@ -221,6 +229,9 @@
             <div class="col-12">
                 <h1>Your favourite destinations</h1>
                 <h2>{{username}}'s favourite countries</h2>
+                <form action="/profile/reset" method="post">
+                    <button class="btn-danger" href="#">Reset Favourites <i class="fas fa-redo-alt"></i> </button>
+                </form>
             </div>
         </div>
         <div class="row">

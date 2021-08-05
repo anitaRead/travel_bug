@@ -1,20 +1,71 @@
-{{username}}
-  {{!-- <button id="username-toggle">Edit Username</button> --}}
-  <form action="/profile/edit/username" method="post" id="username-form">
-  <input class="rounded" type="text" placeholder="Enter new username" name="username" required>
-  <button type="submit" class="btn">Change</button>
-  </form>
+<div class="edit-profile-page">
+
+  <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg px-5 d-print">
+      <a class="navbar-brand" href="/">
+          <i class="fad fa-globe-americas fa-2x"></i>
+      </a>
+      <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-target="#navbarNavAltMarkup" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse px-1" id="navbarSupportedContent">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item">
+              <a class="nav-link" href="/explore">Explore</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Profile </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li> <a class="dropdown-item" href="/profile">My Profile <i class="fa fa-user-circle" aria-hidden="true"></i> </a> </li>
+              <li> <hr class="dropdown-divider"> </li>
+              <li> <a class="dropdown-item" href="/profile/edit"> Edit Profile <i class="fas fa-pencil-alt fa-1x"></i></a></li>
+              <li> <hr class="dropdown-divider"> </li>
+              <li> <a class="dropdown-item" href="/profile/#main-user-section">Inspiration <i class="fa fa-paper-plane" aria-hidden="true"></i> </a> </li>
+              <li> <hr class="dropdown-divider"> </li>
+              <li> <a class="dropdown-item" href="/profile/#fav-country-form">Favourites <i class="fa fa-heart" aria-hidden="true"></i> </a> </li>
+              <li> <hr class="dropdown-divider"> </li>
+              <li>
+                <form action="/sessions/end" method="post"> 
+                  <button class="dropdown-item btn-danger" href="#">Sign Out <i class="fa fa-sign-out" aria-hidden="true"></i> </button> 
+                </form>
+              </li>  
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
 
-<div class="m-b-25"> <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> </div>
-<a class="edit-pic" href='https://en.gravatar.com/'>Edit Picture</a>
 
-<h6>{{vaccination_status}}</h6>
-<form action="/profile/edit/vaccination" method="post" id="vax-status">
-<label for="vaccine_status">Edit vaccine status:</label>
-  <select name="vaccination_status">
-    <option value="Unvaccinated">Unvaccinated</option>
-    <option value="Vaccinated">Vaccinated</option>
-  </select>
-  <input type="submit" value="Submit">
-</form>
+  <div class ="user-info">
+
+    <h4>{{username}}</h4>
+    
+    {{!-- <button id="username-toggle">Edit Username</button> --}}
+    <form action="/profile/edit/username" method="post" id="username-form">
+    <input class="rounded" type="text" placeholder="Enter new username" name="username" required>
+    <button type="submit" class="btn btn-success">Change</button>
+    </form>
+    <br>
+
+
+    <div class="m-b-25"> <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> </div>
+    <div class="editpic">
+      <button type="button" class="btn btn-outline-warning edit-pic" href='https://en.gravatar.com/'>Edit Picture</a>
+    </div>
+
+    <br>
+     <h4>{{vaccination_status}}</h4>
+   
+      <form action="/profile/edit/vaccination" method="post" id="vax-status">
+      <label class = "editstatus" for="vaccine_status">Edit vaccine status:</label>
+      <select name="vaccination_status">
+        <option value="Unvaccinated">Unvaccinated</option>
+        <option value="Vaccinated">Vaccinated</option>
+      </select>
+      <button type="submit" class="btn btn-success" value="Submit">Change</button>
+      </form>
+
+  </div>
+
+</div>

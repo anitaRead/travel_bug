@@ -5,16 +5,23 @@ For our final project, we decided to create a web application, Travel Bug, that 
 
 It uses:
 - [Express](https://expressjs.com/) web framework for Node.js.
+- [Express-Session](https://github.com/expressjs/session) to create sessions to track logged in user.
+- [Express-Handlebars](https://github.com/jneen/express-handlebars) to allow custom block helpers to be defined in the usual express-ive way.
+- [Cookie-Parser](https://github.com/expressjs/cookie-parser) to populate req.cookies with logged in user details.
+- [Country-List](https://github.com/fannarsh/country-list) API for loading in country names
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
 - [Handlebars](https://handlebarsjs.com/) to render view templates.
 - [Mongoose](https://mongoosejs.com) to model objects in MongoDB.
 - [ESLint](https://eslint.org) for linting.
 - [Jest](https://jestjs.io/) for testing.
+- [JSDOM](https://github.com/jsdom/jsdom) is a pure-JavaScript implementation of many web standards
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 - [API](https://www.gov.uk/api/content/foreign-travel-advice) for fetching GOVUK data.
+- [Gravatar](https://github.com/emerleite/node-gravatar) A library to generate Gravatar URLs in Node.js Based on gravatar specs
 
 
 ### User Stories
+
 
 #### Explore
 
@@ -31,10 +38,53 @@ I want to see a list of countries on the amber/amber plus list
 ```
 
 ```
-As a global jetsetter 
-So that I can travel anywhere 
+As a global jetsetter
+So that I can travel anywhere
 I want to see a list of countries on the red list
+```
 
+#### Profile
+
+```
+As a prospective traveller
+So that I can use travel bug
+I would like to be able to sign up
+```
+
+```
+As a travel bug user
+So that I can view my user profile
+I would like to sign in
+```
+
+```
+As a travel bug user
+So that I can change my travel bug username
+I would like to edit my profile username
+```
+
+```
+As a travel bug user
+So that I can add my vaccination status
+I would like to save my vaccination status to my profile
+```
+
+```
+As a travel bug user
+So that I can update my vaccination status
+I would like to update my vaccination status on my profile
+```
+
+```
+As a travel bug user
+So that I can personalise my user profile
+I want to be able to set my profile picture
+```
+
+```
+As a travel bug user
+So that I am able to view my profile page details
+I want to see my username, profile picture & vaccination status
 ```
 
 #### Search
@@ -46,6 +96,24 @@ I want to see a list of all possible destinations for UK tourists
 ```
 
 ```
+As a travel bug user
+So that I can travel quarantine free
+I want to see a list of my top six recommended destinations
+```
+
+```
+As a travel bug user
+So that I can easily view my favourite places
+I want to set and see a list of my favourite destinations
+```
+
+```
+As a travel bug user
+So that I can view the status of my holiday destination
+I want a modal to pop up when I selected my desired country
+```
+
+<!-- ```
 As an unvaccinated user
 So that I do not have to quarantine
 I want to see a list of countries on the green list
@@ -76,9 +144,7 @@ I want to see a list of countries on the green, amber and amber plus lists
 ```
 
 ```
-As a vaccinated user 
+As a vaccinated user
 So that I can travel anywhere
 I want to see a list of countries on the green, amber and red lists
-```
-
-
+``` -->

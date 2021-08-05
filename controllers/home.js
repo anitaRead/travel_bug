@@ -14,10 +14,22 @@ var HomeController = {
   },
 
   Create: function(req, res) {
+
     var user = new User(req.body);
-    user.save(function(err) {
-      if (err) { throw err; }
-      res.status(201).redirect('/sessions');
+    console.log(user);
+    var username = user.username;
+    console.log(username);
+
+    User.findOne({username: username}, function(err, newUser) {
+      if(!newUser){
+        user.save(function(err) {
+          if (err) { throw err; }
+          res.status(201).redirect('/sessions');
+        })
+      }
+      else {
+        res.status(201).redirect('/signup');
+      }
     });
   },
 
@@ -86,7 +98,7 @@ var HomeController = {
     })
 
   },
- 
+
   Profile: function(req, res) {
     var url = 'https://www.gov.uk/api/content/guidance/red-amber-and-green-list-rules-for-entering-england';
     var gravatar = require('gravatar');
@@ -94,7 +106,7 @@ var HomeController = {
 
     https.get(url, function(response){
       var result = '';
-      
+
       response.on('data', function(data){
         result += data;
       })
@@ -156,11 +168,11 @@ var HomeController = {
               }
             }
           }
-          
+
           return topSix;
         }
 
-        User.findOne({_id: userID}, function(err, user) { 
+        User.findOne({_id: userID}, function(err, user) {
           if(err) { throw err }
           var isVaxed = false;
           var username = user.username;
@@ -193,9 +205,6 @@ var HomeController = {
   UpdateProfileFaveCountry: function(req, res){
     var countrySelected = req.body.country
     var userID = req.session.user_sid
-    console.log(countrySelected);
-    console.log(userID);
-
 
     User.findOne({_id: userID}, function(err, user) {
       if(err) { throw err}
@@ -207,6 +216,14 @@ var HomeController = {
     })
   },
 
+  RemoveProfileFaveCountry: function(req, res){
+    var userID = req.session.user_sid
+    User.update({_id: userID}, { $set: {fav_countries: [] }}, function(err) {
+      if(err) { throw err}
+      res.status(201).redirect('/profile');
+    })
+  },
+  
   EditPage: function(req, res) {
     var gravatar = require('gravatar');
 
