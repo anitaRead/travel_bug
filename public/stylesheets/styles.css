@@ -50,11 +50,7 @@ body {
 
 #landing-page {
     height: 100vh;
-<<<<<<< HEAD
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 100%, #000000 100%), url("../images/plane.jpg");
-=======
     background: linear-gradient(to bottom, rgba(0, 0, 0, -0.75) 100%, #000000 100%), url("../images/plane.png");
->>>>>>> landing-page-styling
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
