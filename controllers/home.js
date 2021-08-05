@@ -5,11 +5,29 @@ var jsdom = require("jsdom");
 
 var HomeController = {
   Index: function(req, res) {
-    res.render('home/index', { title: 'Travel Bug' });
+
+    var isSignedIn = false;
+
+    if (req.session.user_sid) {
+      isSignedIn = true;
+    } else {
+      isSignedIn = false;
+    }
+
+    res.render('home/index', { isSignedIn: isSignedIn });
   },
 
   SignupPage: function(req, res) {
-    res.render('home/signup');
+
+    var isSignedIn = false;
+
+    if (req.session.user_sid) {
+      isSignedIn = true;
+    } else {
+      isSignedIn = false;
+    }
+
+    res.render('home/signup', { isSignedIn: isSignedIn });
   },
 
   Create: function(req, res) {
@@ -33,7 +51,15 @@ var HomeController = {
   },
 
   SigninPage: function(req, res) {
-    res.render('home/signin');
+    var isSignedIn = false;
+
+    if (req.session.user_sid) {
+      isSignedIn = true;
+    } else {
+      isSignedIn = false;
+    }
+
+    res.render('home/signin', { isSignedIn: isSignedIn });
   },
 
   Signin: function(req, res) {
@@ -60,8 +86,8 @@ var HomeController = {
   List: function(req, res) {
 
     var url = 'https://www.gov.uk/api/content/guidance/red-amber-and-green-list-rules-for-entering-england';
-
-
+    
+    
     https.get(url, function(response){
       var result = '';
 
@@ -92,7 +118,15 @@ var HomeController = {
         var amberList = getCountries(doc, 1);
         var greenList = getCountries(doc, 2);
 
-        res.render('explore/index', { redList: redList, amberList: amberList, greenList: greenList })
+        var isSignedIn = false;
+
+        if (req.session.user_sid) {
+          isSignedIn = true;
+        } else {
+          isSignedIn = false;
+        }
+
+        res.render('explore/index', { redList: redList, amberList: amberList, greenList: greenList, isSignedIn: isSignedIn })
       })
     })
 

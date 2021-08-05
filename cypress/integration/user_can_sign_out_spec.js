@@ -19,6 +19,5 @@ describe('Sign out page', function() {
       cy.contains('Explore');
       cy.contains('Sign Up');
       cy.contains('Sign In');
-      cy.contains('Profile');
     });
 });
