@@ -8,6 +8,6 @@ router.get('/edit', HomeController.EditPage);
 router.post('/edit/username', HomeController.EditUsername);
 router.post('/edit/vaccination', HomeController.EditVaccine);
 router.post('/addCountry', HomeController.UpdateProfileFaveCountry);
-router.post('/reset', HomeController.RemoveProfileFaveCountry);
+router.post('/removeFav', HomeController.RemoveFaveCountry);
 
 module.exports = router;
