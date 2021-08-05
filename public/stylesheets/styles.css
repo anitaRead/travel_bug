@@ -218,6 +218,7 @@ body {
     color: #F5F5F5;
     font-weight: 700;
     background-color: #5cb85c;
+    border-radius: 15px;
 }
 
 .green-fav-country:hover {
@@ -228,6 +229,7 @@ body {
     color: #F5F5F5;
     font-weight: 700;
     background-color: #f0ad4e;
+    border-radius: 15px;
 }
 
 .amber-fav-country:hover {
@@ -238,6 +240,7 @@ body {
     color: #F5F5F5;
     font-weight: 700;
     background-color: #d9534f;
+    border-radius: 15px;
 }
 
 .red-fav-country:hover {
