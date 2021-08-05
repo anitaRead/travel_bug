@@ -84,17 +84,58 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleTitle">{{this.name}}</h5>
+                    <h4 class="modal-title d-flex flex-row justify-content-center" id="exampleTitle">{{this.name}}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h1>{{this.colour}}</h1>
-                    <p>{{{allRules.[0].green}}}</p>
-                    <p>{{allRules.[0].amber}}</p>
+                    {{#if isGreen}}
+                        <h5>{{this.colour}} list:</h5>
+                        <div>
+                            <p>You must only have been in or travelled through a green list country or the UK, Ireland, the Channel Islands or the Isle of Man in the previous 10 days.  
+                            You must follow these rules even if you have been fully vaccinated.</p>
+                            <h6>Before you travel to England you must:</h6>
+                            <ol>
+                                <li>Take a COVID-19 test – children aged 10 and under do not need to take this test</li>
+                                <li>Book and pay for a day 2 COVID-19 test – to be taken after arrival in England</li>
+                                <li>complete a passenger locator form</li>
+                            </ol>
+                            <h6>On arrival in England:</h6>
+                            <ol>
+                            <li>You must take a COVID-19 test on or before day 2 after you arrive. 
+                                Children aged 4 and under do not need to take this test.</li>
+                            <li>You do not need to quarantine unless the test result is positive.</li>
+                            <li>You must quarantine if NHS Test and Trace informs you that you travelled to England with someone who has tested positive for COVID-19.</li>
+                            </ol>
+                        </div>
+                    {{else}}
+                        <h3>{{this.colour}} list:</h3>
+                        <h5>You must have had your final dose of the vaccine at least 14 whole days before the date you arrive in England for these rules to apply.</h5>
+                        
+                        <p>What you must do if you have been in a country or territory on the amber list in the 10 days 
+                            before you arrive in England.</p>
+
+                        <h6>Before you travel to England you must:</h6>
+                        
+                        <ol>
+                            <li>Take a COVID-19 test – children aged 10 and under do not need to take this test</li>
+                            <li>Book and pay for a day 2 COVID-19 test – to be taken after arrival in England</li>
+                            <li>complete a passenger locator form</li>
+                        </ol>
+
+                        <h6>On arrival in England you must:</h6>
+                        <ol>
+                            <li>You must take a COVID-19 test on or before day 2 after you arrive. 
+                                Children aged 4 and under do not need to take this test.</li>
+                            <li>You do not need to quarantine unless the test result is positive.</li>
+                            <li>You must quarantine if NHS Test and Trace informs you that you travelled to England with someone who has tested positive for COVID-19.</li>
+                        </ol>
+                        
+
+
+                    {{/if}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
                 </div>
             </div>
@@ -140,16 +181,31 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleTitle">{{this.name}}</h5>
+                    <h4 class="modal-title" id="exampleTitle">{{this.name}}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h1>{{this.colour}}</h1>
-                    <p>{{allRules.[1].green}}</p>
+                    <h5>{{this.colour}} list:</h5>
+                        <div>
+                            <p>You must only have been in or travelled through a green list country or the UK, Ireland, the Channel Islands or the Isle of Man in the previous 10 days.  
+                            You must follow these rules even if you have been fully vaccinated.</p>
+                            <h6>Before you travel to England you must:</h6>
+                            <ol>
+                                <li>Take a COVID-19 test – children aged 10 and under do not need to take this test</li>
+                                <li>Book and pay for a day 2 COVID-19 test – to be taken after arrival in England</li>
+                                <li>complete a passenger locator form</li>
+                            </ol>
+                            <h6>On arrival in England:</h6>
+                            <ol>
+                            <li>You must take a COVID-19 test on or before day 2 after you arrive. 
+                                Children aged 4 and under do not need to take this test.</li>
+                            <li>You do not need to quarantine unless the test result is positive.</li>
+                            <li>You must quarantine if NHS Test and Trace informs you that you travelled to England with someone who has tested positive for COVID-19.</li>
+                            </ol>
+                        </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
                 </div>
                 </div>
             </div>
@@ -192,14 +248,6 @@
             </div>
         </div>
     </div>
-    {{#if isVaxed}}
-        <h1>Vaxed rules</h1>
-        <p>{{allRules.[0].green}}</p>
-        <p>{{allRules.[0].amber}}</p>
-    {{else}}
-        <h1>Unvaxed rules</h1>
-        <p>{{allRules.[1].green}}</p>
-    {{/if}}
 
 </div>
 

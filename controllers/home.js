@@ -115,47 +115,25 @@ var HomeController = {
             var countryName = tableRows[i].firstElementChild.textContent;
             var countryId = countryName.replace(/[^A-Z0-9]/ig, "");
             var colour = "";
+            var isGreen = false;
             if(tableNumber === 2) {
-              colour = "green";
+              colour = "Green";
+              isGreen = true;
             } else if (tableNumber === 1){
-              colour = "amber";
+              colour = "Amber";
+              isGreen = false;
             } else {
-              colour = "red";
+              colour = "Red";
+              isGreen = false;
             }
             
-            var countryObj = { id: countryId, name: countryName, colour: colour};
+            var countryObj = { id: countryId, name: countryName, colour: colour, isGreen: isGreen};
             countries.push(countryObj);
           }
 
           return countries;
         }
 
-        function getRules(content){
-
-          var rules = [];
-          
-          var allElements = content.querySelectorAll("*");
-          var splitElements = allElements[0].innerHTML.replace(/>/g,'>\x1d').split(/(?=<)|\x1d/);
-          
-          var amberStartInd = splitElements.indexOf('<h3 id="amber-list-rules-if-fully-vaccinated-in-europe-or-the-usa">');
-          var amberEndInd = splitElements.indexOf('Find out more about the ') + 7;
-          var amberSlice = splitElements.slice(amberStartInd, amberEndInd);
-          amberSlice = amberSlice.join("").replace(/(<([^>]+)>)/gi, " ");
-          
-          var greenStartInd = splitElements.indexOf('<h2 id="green-list-rules">');
-          var greenEndInd = splitElements.indexOf('You do not need to quarantine unless the test result is positive.') + 2;
-          var greenSlice = splitElements.slice(greenStartInd, greenEndInd);
-          greenSlice = greenSlice.join("\n").replace(/(<([^>]+)>)/gi, " ");
-
-          var vaxRules = { green: greenSlice, amber: amberSlice };
-          var unVaxRules = { green: greenSlice };
-          
-          rules.push(vaxRules);
-          rules.push(unVaxRules);
-
-          return rules;
-
-        }
 
         var greenList = getCountries(doc, 2);
         var amberList = getCountries(doc, 1);
@@ -203,11 +181,9 @@ var HomeController = {
           var unvaxList = getTopSix(greenList);
 
 
-          var allRules = getRules(doc);
-
         
           res.render('home/profile', { username: username, vaccination_status: vaccination_status, vaxList: vaxList, unvaxList: unvaxList, 
-            isVaxed: isVaxed, url: url, country_list: countryListNames, fav_countries: fc, allRules: allRules});
+            isVaxed: isVaxed, url: url, country_list: countryListNames, fav_countries: fc});
 
         });
       })
