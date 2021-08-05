@@ -28,13 +28,6 @@ app.use(session({key: 'user_sid', secret: 'somerandonstuffs', resave: false, sav
   cookie: {expires: 600000}
 }));
 
-// app.use((req, res, next) => {
-//   if (req.cookies.user_sid && !req.session.user) {
-//     res.clearCookie('user_sid');
-//   }
-//   next();
-// });
-
 var sessionChecker = (req, res, next) => {
   if (req.session.user_sid)
   {

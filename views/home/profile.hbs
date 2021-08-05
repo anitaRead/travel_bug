@@ -41,7 +41,6 @@
                 <h1>welcome, {{username}}</h1>
                 <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> 
                 <h6>vaccination status: {{vaccination_status}}</h6>
-                <a class="edit-profile-link" href="/profile/edit">Edit Profile <i class="fas fa-pencil-alt fa-1x"></i></a>
         </div>   
         <div class="col-md-12 down-icon">
             <a href="#inspiration-section"><i class="fad fa-chevron-double-down fa-4x"></i></a>
@@ -230,7 +229,7 @@
                 <h1>Your favourite destinations</h1>
                 <h2>{{username}}'s favourite countries</h2>
                 <form action="/profile/reset" method="post">
-                    <button class="btn-danger" href="#">Reset Favourites <i class="fas fa-redo-alt"></i> </button>
+                    <button id="reset-button" class="btn-danger" href="#">Reset Favourites<i class="fas fa-redo-alt"></i></button>
                 </form>
             </div>
         </div>
