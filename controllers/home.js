@@ -184,6 +184,7 @@ var HomeController = {
   UpdateProfileFaveCountry: function(req, res){
     var countrySelected = req.body.country
     var userID = req.session.user_sid
+    console.log(req.session.user_sid);
 
     User.findOne({_id: userID}, function(err, user) {
       if(err) { throw err }
@@ -195,14 +196,23 @@ var HomeController = {
     })
   },
 
-  RemoveProfileFaveCountry: function(req, res){
-    var countrySelected = req.body.country
+  RemoveFaveCountry: function(req, res){
+    var favCountrySelected = req.body.favCountry
     var userID = req.session.user_sid
+
     User.findOne({_id: userID}, function(err, user) {
       if(err) { throw err }
-      user.fav_countries.pull({fav_countries: countrySelected})
-      res.status(201).redirect('/profile/edit')
+      var update = user.fav_countries - favCountrySelected;
+      User.updateOne({_id: userID}, {fav_countries: update}, function(err){
+        if(err) { throw err }
+        user.save
+        res.status(201).redirect('/profile');
+      })
+      // console.log()
+      // user.fav_countries.pull(favCountrySelected);
+      // user.save();
     })
+    // res.status(201).redirect('/profile');
     // User.update({_id: userID}, { $set: {fav_countries: [] }}, function(err) {
     //   if(err) { throw err}
     //   res.status(201).redirect('/profile');
