@@ -13,12 +13,8 @@
           <li class="nav-item">
               <a class="nav-link" href="/explore">Explore</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="/signup">Sign Up</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="/sessions">Sign In</a>
-          </li>
+
+          {{#if isSignedIn}} 
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Profile </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -37,6 +33,15 @@
               </li>  
             </ul>
           </li>
+          {{else}}
+
+          <li class="nav-item">
+              <a class="nav-link" href="/signup">Sign Up</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/sessions">Sign In</a>
+          </li>
+          {{/if}} 
         </ul>
       </div>
     </nav>
