@@ -249,7 +249,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-sm-12 mt-3 d-flex flex-row justify-content-center">
-                    <div class="col-7">
+                    <div id="fav-country-list" class="col-7">
                         {{#each fav_countries}}
                             {{#if this.red}}
                                 <div class="fav-country-item py-3 shadow-sm rounded red-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
@@ -347,3 +347,35 @@
 
 </div>
 
+<form id="remove-country-form" action="/profile/removeFav" method="post">
+  <select name='favCountry'>
+    {{#each fav_countries}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+  <input type="submit" value="Remove">
+</form>
+
+{{!-- <form id="fav-country-form" action="/profile/addCountry" method="post">
+  <label for="fav-country">Select your favorite country</label>
+  <select name="country" size="10" required>
+    {{#each country_list}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+  <input type="submit" value="Submit">
+</form>
+
+<div id="fav-country-list">
+  <h2>{{username}}'s selected favorite countries</h2>
+  {{fav_countries}}
+</div>
+
+<form id="remove-country-form" action="/profile/removeFav" method="post">
+  <select name='favCountry'>
+    {{#each fav_countries}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+  <input type="submit" value="Remove">
+</form> --}}

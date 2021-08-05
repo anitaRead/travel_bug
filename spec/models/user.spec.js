@@ -85,7 +85,7 @@ describe('User model', function(){
         if (err) {throw err;}
 
           User.find(function(err, user) {
-            if(err) { console.log(err) } 
+            if(err) { console.log(err) }
             expect(user[3].vaccination_status).toEqual('Vaccinated');
           });
         done();

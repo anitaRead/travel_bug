@@ -274,7 +274,7 @@ var HomeController = {
     var userID = req.session.user_sid
 
     User.findOne({_id: userID}, function(err, user) {
-      if(err) { throw err}
+      if(err) { throw err }
       if(!user.fav_countries.includes(countrySelected)){
         user.fav_countries.push(countrySelected);
         user.save();
@@ -283,10 +283,14 @@ var HomeController = {
     })
   },
 
-  RemoveProfileFaveCountry: function(req, res){
-    var userID = req.session.user_sid
-    User.update({_id: userID}, { $set: {fav_countries: [] }}, function(err) {
-      if(err) { throw err}
+  RemoveFaveCountry: function(req, res){
+    var favCountrySelected = req.body.favCountry;
+    var userID = req.session.user_sid;
+
+    User.findOne({_id: userID}, function(err, user) {
+      if(err) { throw err }
+      user.fav_countries.pull(favCountrySelected);
+      user.save();
       res.status(201).redirect('/profile');
     })
   },
