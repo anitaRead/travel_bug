@@ -196,29 +196,13 @@ var HomeController = {
   },
 
   RemoveFaveCountry: function(req, res){
-    // var favCountrySelected = req.body.favCountry;
+    var favCountrySelected = req.body.favCountry;
     var userID = req.session.user_sid;
 
-    // User.findOne({_id: userID}, function(err, user) {
-    //   if(err) { throw err }
-    //   if(!user.fav_countries.includes(favCountrySelected)){
-    //     user.fav_countries.push(favCountrySelected);
-    //     user.save();
-    //   }
-    //   res.status(201).redirect('/profile');
-    // })
-
-    // User.findOne({_id: userID}, function(err, user) {
-    //   if(err) { throw err }
-    //   var favCountryList = user.fav_countries;
-    //   favCountryList = .replace(/{fav_countries})
-    //   // if(!user.fav_countries.includes(countrySelected)){
-    //   //   user.fav_countries.push(countrySelected);
-    //   //   user.save();
-    //   }
-    //
-    User.update({_id: userID}, { $set: {fav_countries: [] }}, function(err) {
-      if(err) { throw err}
+    User.findOne({_id: userID}, function(err, user) {
+      if(err) { throw err }
+      user.fav_countries.pull(favCountrySelected);
+      user.save();
       res.status(201).redirect('/profile');
     })
   },

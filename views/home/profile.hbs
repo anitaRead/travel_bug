@@ -124,10 +124,13 @@
   </select>
   <input type="submit" value="Submit">
 </form>
-<h2>{{username}}'s selected favorite countries</h2>
-{{fav_countries}}
 
-<form id="remove-country-form" action"/profile/removeFav" method="post">
+<div id="fav-country-list">
+  <h2>{{username}}'s selected favorite countries</h2>
+  {{fav_countries}}
+</div>
+
+<form id="remove-country-form" action="/profile/removeFav" method="post">
   <select name='favCountry'>
     {{#each fav_countries}}
       <option value="{{this}}">{{this}}</option>
