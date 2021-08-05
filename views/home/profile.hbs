@@ -1,5 +1,5 @@
 <div class="profile-page">
-    
+
   <!-- Navigation-->
     <nav class="navbar navbar-expand-lg px-5 d-print">
       <a class="navbar-brand" href="/">
@@ -25,10 +25,10 @@
               <li> <a class="dropdown-item" href="/profile/#fav-country-form">Favourites <i class="fa fa-heart" aria-hidden="true"></i> </a> </li>
               <li> <hr class="dropdown-divider"> </li>
               <li>
-                <form action="/sessions/end" method="post"> 
-                  <button class="dropdown-item btn-danger" href="#">Sign Out <i class="fa fa-sign-out" aria-hidden="true"></i> </button> 
+                <form action="/sessions/end" method="post">
+                  <button class="dropdown-item btn-danger" href="#">Sign Out <i class="fa fa-sign-out" aria-hidden="true"></i> </button>
                 </form>
-              </li>  
+              </li>
             </ul>
           </li>
         </ul>
@@ -39,13 +39,13 @@
     <div class="row d-flex flex-row justify-content-center">
         <div class="col-md-12 user-info">
                 <h1>welcome, {{username}} </h1>
-                <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> 
+                <img src="{{url}}" class="img-radius" alt="User-Profile-Image">
                 <h6>vaccination status: {{vaccination_status}}</h6>
-        </div>   
+        </div>
         <div class="col-md-12 down-icon">
             <a href="#main-user-section"><i class="fad fa-chevron-double-down fa-4x"></i></a>
         </div>
-    </div> 
+    </div>
 
     <div id="main-user-section" class="white-container">
     <h1 class="recommended-header pb-5">Destinations recommended for you</h1>
@@ -113,7 +113,7 @@
     {{/if}}
 </div>
 
-  
+
 
 <form id="fav-country-form" action="/profile/addCountry" method="post">
   <label for="fav-country">Select your favorite country</label>
@@ -126,6 +126,14 @@
 </form>
 <h2>{{username}}'s selected favorite countries</h2>
 {{fav_countries}}
+
+<form action="/profile/reset" method="post">
+  <button class="btn-danger" href="#">Reset Favourites <i class="fas fa-redo-alt"></i> </button>
+</form>
+
+<!-- <i class="fa fa-sign-out" aria-hidden="true"></i> -->
+
+
 
 
 
