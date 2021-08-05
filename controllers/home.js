@@ -13,10 +13,22 @@ var HomeController = {
   },
 
   Create: function(req, res) {
+
     var user = new User(req.body);
-    user.save(function(err) {
-      if (err) { throw err; }
-      res.status(201).redirect('/sessions');
+    console.log(user);
+    var username = user.username;
+    console.log(username);
+
+    User.findOne({username: username}, function(err, newUser) {
+      if(!newUser){
+        user.save(function(err) {
+          if (err) { throw err; }
+          res.status(201).redirect('/sessions');
+        })
+      }
+      else {
+        res.status(201).redirect('/signup');
+      }
     });
   },
 
@@ -85,7 +97,7 @@ var HomeController = {
     })
 
   },
- 
+
   Profile: function(req, res) {
     var url = 'https://www.gov.uk/api/content/guidance/red-amber-and-green-list-rules-for-entering-england';
     var gravatar = require('gravatar');
@@ -93,7 +105,7 @@ var HomeController = {
 
     https.get(url, function(response){
       var result = '';
-      
+
       response.on('data', function(data){
         result += data;
       })
@@ -120,9 +132,9 @@ var HomeController = {
         var greenList = getCountries(doc, 2);
         var amberList = getCountries(doc, 1);
         var noFlyList = ["Afghanistan", "Burkina Faso", "Central African Republic", "Haiti", "Iran", "Iraq", "Libya", "Mali",
-        "North Korea", "Mali", "Somalia", "South Sudan", "Syria", "Venezuela", "Yemen", "El Salvador", "Chad", "Honduras", 
-        "Nicaragua", "Congo", "Congo (Democratic Republic)", "The Occupied Palestinian Territories", "Sudan", "Sudan", "Niger", 
-        "Mozambique", "Ethiopia", "Eritrea", "Cameroon", "Pakistan", "Myanmar", "Ukraine", "Belarus", "Colombia", "Eswatini", 
+        "North Korea", "Mali", "Somalia", "South Sudan", "Syria", "Venezuela", "Yemen", "El Salvador", "Chad", "Honduras",
+        "Nicaragua", "Congo", "Congo (Democratic Republic)", "The Occupied Palestinian Territories", "Sudan", "Sudan", "Niger",
+        "Mozambique", "Ethiopia", "Eritrea", "Cameroon", "Pakistan", "Myanmar", "Ukraine", "Belarus", "Colombia", "Eswatini",
         "Liberia", "Jordan"]
 
         function getTopSix(countries){
@@ -138,11 +150,11 @@ var HomeController = {
               }
             }
           }
-          
+
           return topSix;
         }
 
-        User.findOne({_id: userID}, function(err, user) { 
+        User.findOne({_id: userID}, function(err, user) {
           if(err) { throw err }
           var isVaxed = false;
           var username = user.username;
@@ -160,8 +172,8 @@ var HomeController = {
 
           var vaxList = getTopSix(greenList.concat(amberList));
           var unvaxList = getTopSix(greenList);
-        
-        
+
+
           res.render('home/profile', { username: username, vaccination_status: vaccination_status, vaxList: vaxList, unvaxList: unvaxList, isVaxed: isVaxed, url: url, country_list: countryListNames, fav_countries: fc});
 
         });
