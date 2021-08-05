@@ -30,53 +30,77 @@
     {{!-- User profile --}}
     <div class="row d-flex flex-row justify-content-center">
         <div class="col-md-12 user-info">
-                <h1>welcome, {{username}} </h1>
+                <h1>welcome, {{username}}</h1>
                 <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> 
                 <h6>vaccination status: {{vaccination_status}}</h6>
+                <a class="edit-profile-link" href="/profile/edit">Edit Profile <i class="fas fa-pencil-alt fa-1x"></i></a>
         </div>   
         <div class="col-md-12 down-icon">
-            <a href="#main-user-section"><i class="fad fa-chevron-double-down fa-4x"></i></a>
+            <a href="#inspiration-section"><i class="fad fa-chevron-double-down fa-4x"></i></a>
         </div>
     </div> 
 
-    <div id="main-user-section" class="white-container">
-
-
+ 
+ 
+ <div id="inspiration-section" class="white-container">
     <h1 class="recommended-header pb-5">Destinations recommended for you</h1>
 
+
     {{!-- Recommmended destinations --}}
-    {{#if vaxStatus}}
+    {{#if isVaxed}}
     <div class="container">
         <div class="row">
             <div class="col-md-12 recommended-list">
-                <div class="row">
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[0].id}}">
-                        <p>{{vaxList.[0]}}</p>
+                <div class="row d-flex flex-row justify-content-center">
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[0].id}}">
+                        <p>{{vaxList.[0].name}}</p>
                     </div>
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[1].id}}">
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[1].id}}">
                         <p>{{vaxList.[1].name}}</p>
                     </div>
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[2].id}}">
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[2].id}}">
                         <p>{{vaxList.[2].name}}</p>
                     </div>
                 </div>
 
-                <div class="row justify-content-end">
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[3].id}}">
+                <div class="row d-flex flex-row justify-content-center">
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[3].id}}">
                         <p>{{vaxList.[3].name}}</p>
                     </div>
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[4].id}}">
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[4].id}}">
                         <p>{{vaxList.[4].name}}</p>
                     </div>
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[5].id}}">
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[5].id}}">
                         <p>{{vaxList.[5].name}}</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    {{!-- Vax modals --}}
+        {{!-- Vax modals --}}
+        {{#each vaxList}}
+            <!-- Modal -->
+            <div class="modal fade" id="{{this.id}}" tabindex="-1" aria-labelledby="exampleLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleTitle">{{this.name}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h1>{{this.colour}}</h1>
+                    <p>{{{allRules.[0].green}}}</p>
+                    <p>{{allRules.[0].amber}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+            </div>
+        {{/each}}
+    </div>
 
     {{else}}
     <div class="container">
@@ -120,7 +144,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <h1>{{this.colour}}</h1>
+                    <p>{{allRules.[1].green}}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -134,21 +159,47 @@
     {{/if}}
 </div>
 
-  
-<a class="edit-profile-link" href="/profile/edit">Edit Profile <i class="fas fa-pencil-alt fa-1x"></i></a>
 
-<form id="fav-country-form" action="/profile/addCountry" method="post">
-  <label for="fav-country">Select your favorite country</label>
-  <select name="country" size="10" required>
-    {{#each country_list}}
-      <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
-  <input type="submit" value="Submit">
-</form>
-<h2>{{username}}'s selected favorite countries</h2>
-{{fav_countries}}
-
-
+    <div id="favourites-section" class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Your favourite destinations</h1>
+                <h2>{{username}}'s favourite countries</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 mt-4 d-flex justify-content-center">
+                <div class="fav-form-style shadow p-4 rounded card">
+                    <form id="fav-country-form" action="/profile/addCountry" method="post">
+                        <div class="form-group">
+                            <label for="fav-country mt-5">Select your favorite country</label>
+                            <select multiple class="form-control select-country-box mt-4 p-2" name="country" required>
+                                {{#each country_list}}
+                                    <option class="p-2" value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                            <input type="submit" value="Submit" class="btn btn-danger mt-4">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 mt-4 d-flex flex-row justify-content-end">
+                    <div class="col-12">
+                        {{#each fav_countries}}
+                            <div class="fav-country-item">{{this}}</div>
+                        {{/each}}
+                    </div>
+            </div>
+        </div>
+    </div>
+    {{#if isVaxed}}
+        <h1>Vaxed rules</h1>
+        <p>{{allRules.[0].green}}</p>
+        <p>{{allRules.[0].amber}}</p>
+    {{else}}
+        <h1>Unvaxed rules</h1>
+        <p>{{allRules.[1].green}}</p>
+    {{/if}}
 
 </div>
+

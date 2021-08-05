@@ -173,10 +173,28 @@ body {
     filter: brightness(100%);
 }
 
+#favourites-section {
+    margin-top: 20vh;
+    height: 100vh;
+}
+
+.fav-form-style {
+    height: 400px;
+    width: 40rem; 
+}
+
+.select-country-box {
+    height: 200px;
+}
+
+.fav-country-item {
+    margin-top: 4%;
+    border: 1px solid #d3d3d3;
+}
+
 /* #username-form {
     display: none;
 } */
-
 
 /* Media queries for mobile */
 
