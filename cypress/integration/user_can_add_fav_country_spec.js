@@ -13,9 +13,9 @@ describe('Profile page', function() {
 
       cy.get('#fav-country-form').find('[name = "country"]').select('Andorra');
       cy.get('#fav-country-form').submit();
-      cy.contains('Andorra');
+      cy.get('#fav-country-list').contains('Andorra');
       cy.get('#fav-country-form').find('[name = "country"]').select('Angola');
       cy.get('#fav-country-form').submit();
-      cy.contains('Angola');
+      cy.get('#fav-country-list').contains('Angola');
     });
 });

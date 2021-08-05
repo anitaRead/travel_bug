@@ -220,7 +220,7 @@ var HomeController = {
     var userID = req.session.user_sid
 
     User.findOne({_id: userID}, function(err, user) {
-      if(err) { throw err}
+      if(err) { throw err }
       if(!user.fav_countries.includes(countrySelected)){
         user.fav_countries.push(countrySelected);
         user.save();
@@ -229,30 +229,18 @@ var HomeController = {
     })
   },
 
-  RemoveProfileFaveCountry: function(req, res){
-    var userID = req.session.user_sid
-    User.update({_id: userID}, { $set: {fav_countries: [] }}, function(err) {
-      if(err) { throw err}
+  RemoveFaveCountry: function(req, res){
+    var favCountrySelected = req.body.favCountry;
+    var userID = req.session.user_sid;
+
+    User.findOne({_id: userID}, function(err, user) {
+      if(err) { throw err }
+      user.fav_countries.pull(favCountrySelected);
+      user.save();
       res.status(201).redirect('/profile');
     })
   },
 
-  // Profile: function(req, res){
-
-  //   var gravatar = require('gravatar');
-  //   var userID = req.session.user_sid
-
-  //   User.findOne({_id: userID}, function(err, user) {
-  //     if(err) { throw err}
-  //     var countryListNames = countryList.getNames();
-  //     var email = user.email;
-  //     var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
-  //     var fc = user.fav_countries;
-  //     var username = user.username;
-  //     var vaccination_status = user.vaccination_status;
-  //     res.render('home/profile', {country_list: countryListNames, fav_countries: fc, username: username, vaccination_status: vaccination_status, url: url})
-  //   })
-  // },
 
   EditPage: function(req, res) {
     var gravatar = require('gravatar');

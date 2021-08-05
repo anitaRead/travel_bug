@@ -1,5 +1,5 @@
 describe('Profile page', function() {
-  it('can reset all saved favorite countries', function() {
+  it('can remove a selected favorite country', function() {
     cy.visit('/');
     cy.contains('Sign Up').click({force:true});
     cy.get('#sign-up-form').find('[name = "username"]').type('jim');
@@ -14,11 +14,12 @@ describe('Profile page', function() {
 
     cy.get('#fav-country-form').find('[name = "country"]').select('Andorra');
     cy.get('#fav-country-form').submit();
-    cy.contains('Andorra');
+    cy.get('#fav-country-list').contains('Andorra');
 
-    cy.contains('Reset Favourites').click({force:true});
+    cy.get('#remove-country-form').find('[name = "favCountry"]').select('Andorra');
+    cy.get('#remove-country-form').submit();
 
-    cy.contains('Andorra').should('not.exist');
+    cy.get('#fav-country-list').contains('Andorra').should('not.exist');
 
   });
 });
