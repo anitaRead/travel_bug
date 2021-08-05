@@ -226,8 +226,7 @@
     <div id="favourites-section" class="container">
         <div class="row">
             <div class="col-12">
-                <h1>Your favourite destinations</h1>
-                <h2>{{username}}'s favourite countries</h2>
+                <h1>{{username}}'s favourite destinations</h1>
                 <form action="/profile/reset" method="post">
                     <button id="reset-button" class="btn-danger" href="#">Reset Favourites<i class="fas fa-redo-alt"></i></button>
                 </form>
@@ -249,13 +248,103 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-9 col-sm-12 mt-4 d-flex flex-row justify-content-end">
-                    <div class="col-12">
+            <div class="col-md-9 col-sm-12 mt-3 d-flex flex-row justify-content-center">
+                    <div class="col-7">
                         {{#each fav_countries}}
-                            <div class="fav-country-item">{{this}}</div>
+                            {{#if this.red}}
+                                <div class="fav-country-item py-3 shadow-sm rounded red-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
+                                    {{this.name}}
+                                </div>
+                            {{else}}
+                                {{#if this.isGreen}}
+                                    <div class="fav-country-item py-3 shadow-sm rounded green-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
+                                        {{this.name}}
+                                    </div>
+                                {{else}}
+                                    <div class="fav-country-item py-3 shadow-sm rounded amber-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
+                                        {{this.name}}
+                                    </div>
+                                {{/if}}
+                            {{/if}}
                         {{/each}}
                     </div>
             </div>
+            <!-- Favourites modal -->
+            {{#each fav_countries}}
+            <div class="modal fade" id="{{this.id}}" tabindex="-1" aria-labelledby="exampleLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleTitle">{{this.name}}</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>{{this.colour}} list:</h5>
+
+                        {{#if this.red}}
+                        <div>
+                            <p>If you have been in a country or territory on the red list in the last 10 days you will only be 
+                                allowed to enter the UK if you are a British or Irish National, 
+                                or you have residence rights in the UK. You must follow these rules even if you have been fully vaccinated.</p>
+                            <h6>Before you travel to England you must:</h6>
+                            <ol>
+                                <li>Take a COVID-19 test – children aged 10 and under do not need to take this test</li>
+                                <li>Book a quarantine hotel package, including two COVID-19 tests</li>
+                                <li>complete a passenger locator form</li>
+                            </ol>
+                            <h6>On arrival in England:</h6>
+                            <p>You must quarantine in a managed hotel, including 2 COVID-19 tests.</p>
+                        </div>
+                        {{else}}
+                            {{#if this.isGreen}}
+                                <div>
+                                    <p>You must only have been in or travelled through a green list country or the UK, Ireland, the Channel Islands or the Isle of Man in the previous 10 days.  
+                                    You must follow these rules even if you have been fully vaccinated.</p>
+                                    <h6>Before you travel to England you must:</h6>
+                                    <ol>
+                                        <li>Take a COVID-19 test – children aged 10 and under do not need to take this test</li>
+                                        <li>Book and pay for a day 2 COVID-19 test – to be taken after arrival in England</li>
+                                        <li>complete a passenger locator form</li>
+                                    </ol>
+                                    <h6>On arrival in England:</h6>
+                                    <ol>
+                                    <li>You must take a COVID-19 test on or before day 2 after you arrive. 
+                                        Children aged 4 and under do not need to take this test.</li>
+                                    <li>You do not need to quarantine unless the test result is positive.</li>
+                                    <li>You must quarantine if NHS Test and Trace informs you that you travelled to England with someone who has tested positive for COVID-19.</li>
+                                    </ol>
+                                </div>
+                            {{else}}
+
+                                <h6>Before you travel to England you must:</h6>
+                                
+                                <ol>
+                                    <li>Take a COVID-19 test – you must take the test in the 3 days before you travel to England</li>
+                                    <li>Book and pay for COVID-19 tests – to be taken after arrival in England</li>
+                                    <li>Complete a passenger locator form</li>
+                                </ol>
+
+                                <h6>On arrival in England you must:</h6>
+                                <ol>
+                                    <li>Quarantine at home or in the place you are staying for 10 days</li>
+                                    <li>take a COVID-19 test on or before day 2 and on or after day 8</li>
+                                </ol>
+                                <h5>You do not need to quarantine or take a day 8 test after you arrive in England if you are fully vaccinated in the UK</h5>
+                                <p>You must have had your final dose of the vaccine at least 14 whole days before the date you arrive in England. You still need to book and take a day 2 test.</p>
+                        
+                        {{/if}}
+                    {{/if}}
+
+
+                        
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+            </div>
+            {{/each}}
         </div>
     </div>
 

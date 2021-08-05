@@ -19,7 +19,6 @@ describe('Profile page', function() {
     cy.get('#reset-button').click({force: true});
 
     cy.get('.fav-country-item').should('not.exist');
-    // cy.contains('Andorra').should('not.exist');
 
   });
 });

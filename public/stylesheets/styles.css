@@ -210,8 +210,20 @@ body {
 }
 
 .fav-country-item {
-    margin-top: 4%;
+    margin-top: 2%;
     border: 1px solid #d3d3d3;
+}
+
+.green-fav-country {
+    background-color: green;
+}
+
+.amber-fav-country {
+    background-color: orange;
+}
+
+.red-fav-country {
+    background-color: red;
 }
 
 /* Edit profile page */

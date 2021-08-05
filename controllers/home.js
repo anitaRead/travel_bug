@@ -34,9 +34,9 @@ var HomeController = {
   Create: function(req, res) {
 
     var user = new User(req.body);
-    console.log(user);
+   
     var username = user.username;
-    console.log(username);
+  
 
     User.findOne({username: username}, function(err, newUser) {
       if(!newUser){
@@ -213,8 +213,41 @@ var HomeController = {
           var email = user.email;
           var vaccination_status = user.vaccination_status;
           var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
-          var countryListNames = countryList.getNames();
+          var countryListNames = countryList.getNames().sort();
           var fc = user.fav_countries;
+          
+
+          function getFavCountries(fc, green, amber){
+            var countries = [];
+            var greenArr = [];
+            green.forEach(country => greenArr.push(country.name));
+            var amberArr = [];
+            amber.forEach(country => amberArr.push(country.name));
+            
+
+            for(let i=0; i<fc.length; i++){
+              var countryId = fc[i].replace(/[^A-Z0-9]/ig, "");
+              var colour = "";
+              var isGreen = false;
+              var red = false;
+
+              if(greenArr.includes(fc[i])){
+                colour = "Green";
+                isGreen = true;
+              } else if(amberArr.includes(fc[i])){
+                colour = "Amber";
+                isGreen = false;
+              } else {
+                colour = "Red";
+                red = true;
+              }
+
+              var countryObj = { id: countryId, name: fc[i], colour: colour, isGreen: isGreen, red: red};
+              countries.push(countryObj);
+            }
+            return countries;
+            
+          }
 
           if(vaccination_status === "Vaccinated") {
             isVaxed = true;
@@ -226,10 +259,10 @@ var HomeController = {
           var vaxList = getTopSix(greenList.concat(amberList));
           var unvaxList = getTopSix(greenList);
 
-
+          var favCountries = getFavCountries(fc, greenList, amberList);
         
           res.render('home/profile', { username: username, vaccination_status: vaccination_status, vaxList: vaxList, unvaxList: unvaxList, 
-            isVaxed: isVaxed, url: url, country_list: countryListNames, fav_countries: fc});
+            isVaxed: isVaxed, url: url, country_list: countryListNames, fav_countries: favCountries});
 
         });
       })
@@ -285,7 +318,6 @@ var HomeController = {
   },
   EditVaccine: function(req, res){
     var vaccination_status = req.body.vaccination_status
-    console.log(req.body)
 
     var userID = req.session.user_sid
     User.updateOne({_id: userID}, {"vaccination_status": vaccination_status}, function(err){
