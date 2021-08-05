@@ -127,8 +127,8 @@
 <h2>{{username}}'s selected favorite countries</h2>
 {{fav_countries}}
 
-<form id="remove-fav-country-form" action"/profile/removeFav" method="post">
-  <select name='favCountry' required>
+<form id="remove-country-form" action"/profile/removeFav" method="post">
+  <select name='favCountry'>
     {{#each fav_countries}}
       <option value="{{this}}">{{this}}</option>
     {{/each}}
@@ -136,10 +136,9 @@
   <input type="submit" value="Remove">
 </form>
 
-<!-- <i class="fa fa-sign-out" aria-hidden="true"></i> -->
-
-
-
+<form action="/profile/removeFav" method="post">
+  <button class="btn-danger" href="#">Reset Favourites <i class="fas fa-redo-alt"></i> </button>
+</form>
 
 
 </div>
