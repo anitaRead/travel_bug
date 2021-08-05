@@ -237,7 +237,7 @@
                 <div class="fav-form-style shadow p-4 rounded card">
                     <form id="fav-country-form" action="/profile/addCountry" method="post">
                         <div class="form-group">
-                            <label for="fav-country mt-5">Select your favorite country</label>
+                            <label for="fav-country mt-5">Select your favourite country</label>
                             <select multiple class="form-control select-country-box mt-4 p-2" name="country" required>
                                 {{#each country_list}}
                                     <option class="p-2" value="{{this}}">{{this}}</option>
@@ -329,15 +329,12 @@
                                     <li>Quarantine at home or in the place you are staying for 10 days</li>
                                     <li>take a COVID-19 test on or before day 2 and on or after day 8</li>
                                 </ol>
-                                <h5>You do not need to quarantine or take a day 8 test after you arrive in England if you are fully vaccinated in the UK</h5>
+                                <h6>You do not need to quarantine or take a day 8 test after you arrive in England if you are fully vaccinated in the UK</h6>
                                 <p>You must have had your final dose of the vaccine at least 14 whole days before the date you arrive in England. You still need to book and take a day 2 test.</p>
                         
                         {{/if}}
                     {{/if}}
-
-
-                        
-                    </div>
+                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
                 </div>

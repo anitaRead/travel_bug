@@ -215,15 +215,33 @@ body {
 }
 
 .green-fav-country {
-    background-color: green;
+    color: #F5F5F5;
+    font-weight: 700;
+    background-color: #5cb85c;
+}
+
+.green-fav-country:hover {
+    border: 1px solid green;
 }
 
 .amber-fav-country {
-    background-color: orange;
+    color: #F5F5F5;
+    font-weight: 700;
+    background-color: #f0ad4e;
+}
+
+.amber-fav-country:hover {
+    border: 1px solid orange;
 }
 
 .red-fav-country {
-    background-color: red;
+    color: #F5F5F5;
+    font-weight: 700;
+    background-color: #d9534f;
+}
+
+.red-fav-country:hover {
+    border: 1px solid red;
 }
 
 /* Edit profile page */
