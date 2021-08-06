@@ -50,7 +50,7 @@
  
  
  <div id="inspiration-section" class="white-container">
-    <h1 class="recommended-header pb-5">Destinations recommended for you</h1>
+    <h1 class="pb-5 section-heading">Destinations recommended for you</h1>
 
 
     {{!-- Recommmended destinations --}}
@@ -226,13 +226,10 @@
     <div id="favourites-section" class="container">
         <div class="row">
             <div class="col-12">
-                <h1>{{username}}'s favourite destinations</h1>
-                <form action="/profile/reset" method="post">
-                    <button id="reset-button" class="btn-danger" href="#">Reset Favourites<i class="fas fa-redo-alt"></i></button>
-                </form>
+                <h1 class="section-heading">{{username}}'s favourite destinations</h1>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-md-3 col-sm-12 mt-4 d-flex justify-content-center">
                 <div class="fav-form-style shadow p-4 rounded card">
                     <form id="fav-country-form" action="/profile/addCountry" method="post">
@@ -252,16 +249,16 @@
                     <div id="fav-country-list" class="col-7">
                         {{#each fav_countries}}
                             {{#if this.red}}
-                                <div class="fav-country-item py-3 red-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
+                                <div class="fav-country-item py-3 shadow red-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
                                     {{this.name}}
                                 </div>
                             {{else}}
                                 {{#if this.isGreen}}
-                                    <div class="fav-country-item py-3 green-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
+                                    <div class="fav-country-item py-3 shadow green-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
                                         {{this.name}}
                                     </div>
                                 {{else}}
-                                    <div class="fav-country-item py-3 amber-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
+                                    <div class="fav-country-item py-3 shadow amber-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
                                         {{this.name}}
                                     </div>
                                 {{/if}}
@@ -274,7 +271,7 @@
                                 <option value="{{this.name}}">{{this.name}}</option>
                                 {{/each}}
                             </select>
-                            <input type="submit" value="Remove">
+                            <input class="btn btn-danger" type="submit" value="Remove">
                         </form>
                     </div>
 
@@ -325,16 +322,6 @@
                                     </ol>
                                 </div>
                             {{else}}
-{{!-- {{#if fav_countries}}
-<form id="remove-country-form" action="/profile/removeFav" method="post">
-  <select name='favCountry'>
-    {{#each fav_countries}}
-      <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
-  <input type="submit" value="Remove">
-</form>
-{{/if}} --}}
 
                                 <h6>Before you travel to England you must:</h6>
                                 

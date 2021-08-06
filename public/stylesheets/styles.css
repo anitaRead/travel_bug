@@ -177,6 +177,10 @@ body {
     margin-top: 50vh;
 }
 
+.section-heading {
+    font-weight: 600;
+}
+
 .recommended-list-item {
     height: 350px;
     width: 350px;
@@ -215,9 +219,9 @@ body {
 }
 
 .green-fav-country {
-    color: #F5F5F5;
+    color: #5cb85c;
     font-weight: 700;
-    background-color: #5cb85c;
+    background: linear-gradient(135deg, #fff 5%, #5cb85c 5%, #5cb85c 15%, #fff 15%);
     border-radius: 15px;
 }
 
@@ -226,9 +230,9 @@ body {
 }
 
 .amber-fav-country {
-    color: #F5F5F5;
+    color: #f0ad4e;
     font-weight: 700;
-    background-color: #f0ad4e;
+    background: linear-gradient(135deg, #fff 5%, #f0ad4e 5%, #f0ad4e 15%, #fff 15%);
     border-radius: 15px;
 }
 
@@ -237,9 +241,9 @@ body {
 }
 
 .red-fav-country {
-    color: #F5F5F5;
+    color: #d9534f;
     font-weight: 700;
-    background-color: #d9534f;
+    background: linear-gradient(135deg, #fff 5%, #d9534f 5%, #d9534f 15%, #fff 15%);
     border-radius: 15px;
 }
 
@@ -265,11 +269,6 @@ body {
 .editstatus {
     font-weight: 400;
 }
-
-
-/* #username-form {
-    display: none;
-} */
 
 /* Media queries for mobile */
 
