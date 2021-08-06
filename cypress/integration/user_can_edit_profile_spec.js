@@ -21,6 +21,6 @@ describe('Edit profile page', function() {
 
     cy.get('#vax-status').find('[name = "vaccination_status"]').select('Vaccinated');
     cy.get('#vax-status').submit();
-    cy.contains('vaccination status: Vaccinated');
+    cy.contains('Vaccination status: Vaccinated');
   });
 });
