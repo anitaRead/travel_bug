@@ -35,36 +35,45 @@
       </div>
     </nav>
 
+  {{!-- mt-3 --}}
 
+  <div class= "user-info">
 
-  <div class ="user-info">
+    <div class= "edit-card card mx-auto" style="width: 30rem;">
+      <div class= "edit-username mt-5">
+        
+        <div class= "user-info-edit mb-2"> {{username}} </div>
 
-    <h4>{{username}}</h4>
-    
-    {{!-- <button id="username-toggle">Edit Username</button> --}}
-    <form action="/profile/edit/username" method="post" id="username-form">
-    <input class="rounded" type="text" placeholder="Enter new username" name="username" required>
-    <button type="submit" class="btn btn-success">Change</button>
-    </form>
-    <br>
+        
+        {{!-- <button id="username-toggle">Edit Username</button> --}}
+        <form action="/profile/edit/username" method="post" id="username-form">
+        <input class="rounded" type="text" placeholder="Enter new username" name="username" required>
+        <button type="submit" class="btn btn-success">Change</button>
+        </form>
+      </div>
+      
 
+      <div class= "edit-profile-picture mt-3">
+        <div class="m-b-25 mb-3"> <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> </div>
+        <div class="editpic">
+          <a href='https://en.gravatar.com/' target="_blank" ><button type="button" class="btn btn-outline-warning edit-pic">Edit Picture </button></a>
+        </div>
+      </div>
 
-    <div class="m-b-25"> <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> </div>
-    <div class="editpic">
-      <button type="button" class="btn btn-outline-warning edit-pic" href='https://en.gravatar.com/'>Edit Picture</a>
+      
+      <div class= "edit-vaccination-status mt-4 mb-5">
+          <div class= "vax-info-edit mb-2"> {{vaccination_status}} </div>
+      
+          <form action="/profile/edit/vaccination" method="post" id="vax-status">
+          <label class = "editstatus" for="vaccine_status">Edit vaccine status:</label>
+          <select name="vaccination_status">
+            <option value="Unvaccinated">Unvaccinated</option>
+            <option value="Vaccinated">Vaccinated</option>
+          </select>
+          <button type="submit" class="btn btn-success" value="Submit">Change</button>
+          </form>
+      </div>
     </div>
-
-    <br>
-     <h4>{{vaccination_status}}</h4>
-   
-      <form action="/profile/edit/vaccination" method="post" id="vax-status">
-      <label class = "editstatus" for="vaccine_status">Edit vaccine status:</label>
-      <select name="vaccination_status">
-        <option value="Unvaccinated">Unvaccinated</option>
-        <option value="Vaccinated">Vaccinated</option>
-      </select>
-      <button type="submit" class="btn btn-success" value="Submit">Change</button>
-      </form>
 
   </div>
 

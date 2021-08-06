@@ -20,7 +20,7 @@
               <li> <hr class="dropdown-divider"> </li>
               <li> <a class="dropdown-item edit-profile-link" href="/profile/edit"> Edit Profile <i class="fas fa-pencil-alt fa-1x"></i></a></li>
               <li> <hr class="dropdown-divider"> </li>
-              <li> <a class="dropdown-item" href="/profile/#main-user-section">Inspiration <i class="fa fa-paper-plane" aria-hidden="true"></i> </a> </li>
+              <li> <a class="dropdown-item" href="/profile/#inspiration-section">Inspiration <i class="fa fa-paper-plane" aria-hidden="true"></i> </a> </li>
               <li> <hr class="dropdown-divider"> </li>
               <li> <a class="dropdown-item" href="/profile/#fav-country-form">Favourites <i class="fa fa-heart" aria-hidden="true"></i> </a> </li>
               <li> <hr class="dropdown-divider"> </li>
@@ -49,8 +49,8 @@
 
  
  
- <div id="inspiration-section" class="white-container">
-    <h1 class="pb-5 section-heading">Destinations recommended for you</h1>
+ <div id="inspiration-section" class="white-container pb-5">
+    <h1 class="pb-5 pt-5 destinations-section-heading ">Destinations recommended for you</h1> 
 
 
     {{!-- Recommmended destinations --}}
@@ -223,14 +223,14 @@
 </div>
 
 
-    <div id="favourites-section" class="container">
+    <div id="favourites-section" class="container favs-container">
         <div class="row">
-            <div class="col-12">
-                <h1 class="section-heading">{{username}}'s favourite destinations</h1>
+            <div class="col-12 mt-5">
+                <h1 class="favourites-section-heading">{{username}}'s favourite destinations</h1>
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-md-3 col-sm-12 mt-4 d-flex justify-content-center">
+            <div class="col-md-3 col-sm-12 mt-4 mb-4 ml-5 d-flex justify-content-center">
                 <div class="fav-form-style shadow p-4 rounded card">
                     <form id="fav-country-form" action="/profile/addCountry" method="post">
                         <div class="form-group">

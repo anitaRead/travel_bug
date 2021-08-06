@@ -147,7 +147,7 @@ body {
 /* Profile page */
 
 .profile-page {
-    height: 100vh;
+    height: 100%;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 100%, #000000 100%), url("../images/venice.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -190,8 +190,18 @@ body {
     margin-top: 50vh;
 }
 
-.section-heading {
+.destinations-section-heading {
     font-weight: 600;
+    color: black
+}
+
+.favs-container {
+    height: 100vh;
+}
+
+.favourites-section-heading {
+    font-weight: 600;
+    color: white
 }
 
 .recommended-list-item {
@@ -212,10 +222,6 @@ body {
     filter: brightness(100%);
 }
 
-#favourites-section {
-    margin-top: 20vh;
-    height: 100vh;
-}
 
 .fav-form-style {
     height: 400px;
@@ -273,6 +279,20 @@ body {
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
+}
+
+.edit-card {
+    background:rgba(52, 52, 52, 0.504);
+}
+
+.user-info-edit{
+    font-size: 1.7rem;
+    font-weight:600;
+}
+
+.vax-info-edit{
+    font-size: 1.4rem;
+    font-weight:500;
 }
 
 .editpic {
