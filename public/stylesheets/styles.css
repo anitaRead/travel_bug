@@ -156,8 +156,21 @@ body {
 }
 
 .user-info {
-    margin-top: 20vh;
+    margin-top: 10vh;
     color: #fff;
+}
+
+.user-info img {
+    border-radius: 50px;
+}
+
+.user-info-heading {
+    font-weight: 700;
+}
+
+.user-info-vax {
+    color: #F5F5F5;
+    font-size: 1.1rem;
     font-weight: 700;
 }
 

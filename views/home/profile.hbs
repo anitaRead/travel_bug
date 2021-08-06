@@ -38,9 +38,9 @@
     {{!-- User profile --}}
     <div class="row d-flex flex-row justify-content-center">
         <div class="col-md-12 user-info">
-                <h1>welcome, {{username}}</h1>
-                <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> 
-                <h6>vaccination status: {{vaccination_status}}</h6>
+                <h1 class="user-info-heading mt-4">Welcome, {{username}}!</h1>
+                <h6 class="user-info-vax mt-4">Vaccination status: {{vaccination_status}}</h6>
+                <img src="{{url}}" class="img-radius mt-4" alt="User-Profile-Image"> 
         </div>   
         <div class="col-md-12 down-icon">
             <a href="#inspiration-section"><i class="fad fa-chevron-double-down fa-4x"></i></a>
@@ -240,7 +240,7 @@
                                     <option class="p-2" value="{{this}}">{{this}}</option>
                                 {{/each}}
                             </select>
-                            <input type="submit" value="Submit" class="btn btn-danger mt-4">
+                            <input type="submit" value="Add" class="btn btn-danger mt-4 px-3">
                         </div>
                     </form>
                 </div>
@@ -266,7 +266,7 @@
                         {{/each}}
 
                         <form id="remove-country-form" action="/profile/removeFav" method="post">
-                            <select name='favCountry'>
+                            <select class="py-1 px-2 rounded mt-5 mx-2" name='favCountry'>
                                 {{#each fav_countries}}
                                 <option value="{{this.name}}">{{this.name}}</option>
                                 {{/each}}
