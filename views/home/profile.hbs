@@ -38,46 +38,116 @@
     {{!-- User profile --}}
     <div class="row d-flex flex-row justify-content-center">
         <div class="col-md-12 user-info">
-                <h1>welcome, {{username}} </h1>
-                <img src="{{url}}" class="img-radius" alt="User-Profile-Image">
+                <h1>welcome, {{username}}</h1>
+                <img src="{{url}}" class="img-radius" alt="User-Profile-Image"> 
                 <h6>vaccination status: {{vaccination_status}}</h6>
-        </div>
+        </div>   
         <div class="col-md-12 down-icon">
-            <a href="#main-user-section"><i class="fad fa-chevron-double-down fa-4x"></i></a>
+            <a href="#inspiration-section"><i class="fad fa-chevron-double-down fa-4x"></i></a>
         </div>
     </div>
 
-    <div id="main-user-section" class="white-container">
+ 
+ 
+ <div id="inspiration-section" class="white-container">
     <h1 class="recommended-header pb-5">Destinations recommended for you</h1>
-    {{#if vaxStatus}}
+
+
+    {{!-- Recommmended destinations --}}
+    {{#if isVaxed}}
     <div class="container">
         <div class="row">
             <div class="col-md-12 recommended-list">
-                <div class="row">
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <p>{{vaxList.[0]}}</p>
+                <div class="row d-flex flex-row justify-content-center">
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[0].id}}">
+                        <p>{{vaxList.[0].name}}</p>
                     </div>
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <p>{{vaxList.[1]}}</p>
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[1].id}}">
+                        <p>{{vaxList.[1].name}}</p>
                     </div>
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <p>{{vaxList.[2]}}</p>
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[2].id}}">
+                        <p>{{vaxList.[2].name}}</p>
                     </div>
                 </div>
 
-                <div class="row justify-content-end">
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <p>{{vaxList.[3]}}</p>
+                <div class="row d-flex flex-row justify-content-center">
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[3].id}}">
+                        <p>{{vaxList.[3].name}}</p>
                     </div>
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <p>{{vaxList.[4]}}</p>
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[4].id}}">
+                        <p>{{vaxList.[4].name}}</p>
                     </div>
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <p>{{vaxList.[5]}}</p>
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{vaxList.[5].id}}">
+                        <p>{{vaxList.[5].name}}</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        {{!-- Vax modals --}}
+        {{#each vaxList}}
+            <!-- Modal -->
+            <div class="modal fade" id="{{this.id}}" tabindex="-1" aria-labelledby="exampleLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title d-flex flex-row justify-content-center" id="exampleTitle">{{this.name}}</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{#if isGreen}}
+                        <h5>{{this.colour}} list:</h5>
+                        <div>
+                            <p>You must only have been in or travelled through a green list country or the UK, Ireland, the Channel Islands or the Isle of Man in the previous 10 days.  
+                            You must follow these rules even if you have been fully vaccinated.</p>
+                            <h6>Before you travel to England you must:</h6>
+                            <ol>
+                                <li>Take a COVID-19 test – children aged 10 and under do not need to take this test</li>
+                                <li>Book and pay for a day 2 COVID-19 test – to be taken after arrival in England</li>
+                                <li>complete a passenger locator form</li>
+                            </ol>
+                            <h6>On arrival in England:</h6>
+                            <ol>
+                            <li>You must take a COVID-19 test on or before day 2 after you arrive. 
+                                Children aged 4 and under do not need to take this test.</li>
+                            <li>You do not need to quarantine unless the test result is positive.</li>
+                            <li>You must quarantine if NHS Test and Trace informs you that you travelled to England with someone who has tested positive for COVID-19.</li>
+                            </ol>
+                        </div>
+                    {{else}}
+                        <h3>{{this.colour}} list:</h3>
+                        <h5>You must have had your final dose of the vaccine at least 14 whole days before the date you arrive in England for these rules to apply.</h5>
+                        
+                        <p>What you must do if you have been in a country or territory on the amber list in the 10 days 
+                            before you arrive in England.</p>
+
+                        <h6>Before you travel to England you must:</h6>
+                        
+                        <ol>
+                            <li>Take a COVID-19 test – children aged 10 and under do not need to take this test</li>
+                            <li>Book and pay for a day 2 COVID-19 test – to be taken after arrival in England</li>
+                            <li>complete a passenger locator form</li>
+                        </ol>
+
+                        <h6>On arrival in England you must:</h6>
+                        <ol>
+                            <li>You must take a COVID-19 test on or before day 2 after you arrive. 
+                                Children aged 4 and under do not need to take this test.</li>
+                            <li>You do not need to quarantine unless the test result is positive.</li>
+                            <li>You must quarantine if NHS Test and Trace informs you that you travelled to England with someone who has tested positive for COVID-19.</li>
+                        </ol>
+                        
+
+
+                    {{/if}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+            </div>
+        {{/each}}
     </div>
 
     {{else}}
@@ -85,52 +155,177 @@
         <div class="row">
             <div class="col-md-12 recommended-list">
                 <div class="row d-flex flex-row justify-content-center">
-                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center">
-                        <p>{{unvaxList.[0]}}</p>
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[0].id}}">
+                        <p>{{unvaxList.[0].name}}</p>
                     </div>
-                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center">
-                        <p>{{unvaxList.[1]}}</p>
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[1].id}}">
+                        <p>{{unvaxList.[1].name}}</p>
                     </div>
-                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center">
-                        <p>{{unvaxList.[2]}}</p>
+                    <div class="recommended-list-item col-4 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[2].id}}">
+                        <p>{{unvaxList.[2].name}}</p>
                     </div>
                 </div>
 
                 <div class="row d-flex flex-row justify-content-center">
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
-                        <p>{{unvaxList.[3]}}</p>
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[3].id}}">
+                        <p>{{unvaxList.[3].name}}</p>
                     </div>
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
-                        <p>{{unvaxList.[4]}}</p>
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[4].id}}">
+                        <p>{{unvaxList.[4].name}}</p>
                     </div>
-                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center">
-                        <p>{{unvaxList.[5]}}</p>
+                    <div class="recommended-list-item col-3 mx-1 mb-2 d-flex flex-column justify-content-center" data-bs-toggle="modal" data-bs-target="#{{unvaxList.[5].id}}">
+                        <p>{{unvaxList.[5].name}}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+        {{!-- Unvax modals --}}
+        {{#each unvaxList}}
+            <!-- Modal -->
+            <div class="modal fade" id="{{this.id}}" tabindex="-1" aria-labelledby="exampleLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleTitle">{{this.name}}</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>{{this.colour}} list:</h5>
+                        <div>
+                            <p>You must only have been in or travelled through a green list country or the UK, Ireland, the Channel Islands or the Isle of Man in the previous 10 days.  
+                            You must follow these rules even if you have been fully vaccinated.</p>
+                            <h6>Before you travel to England you must:</h6>
+                            <ol>
+                                <li>Take a COVID-19 test – children aged 10 and under do not need to take this test</li>
+                                <li>Book and pay for a day 2 COVID-19 test – to be taken after arrival in England</li>
+                                <li>complete a passenger locator form</li>
+                            </ol>
+                            <h6>On arrival in England:</h6>
+                            <ol>
+                            <li>You must take a COVID-19 test on or before day 2 after you arrive. 
+                                Children aged 4 and under do not need to take this test.</li>
+                            <li>You do not need to quarantine unless the test result is positive.</li>
+                            <li>You must quarantine if NHS Test and Trace informs you that you travelled to England with someone who has tested positive for COVID-19.</li>
+                            </ol>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+            </div>
+        {{/each}}
+
     {{/if}}
 </div>
 
 
+    <div id="favourites-section" class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{username}}'s favourite destinations</h1>
+                <form action="/profile/reset" method="post">
+                    <button id="reset-button" class="btn-danger" href="#">Reset Favourites<i class="fas fa-redo-alt"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 mt-4 d-flex justify-content-center">
+                <div class="fav-form-style shadow p-4 rounded card">
+                    <form id="fav-country-form" action="/profile/addCountry" method="post">
+                        <div class="form-group">
+                            <label for="fav-country mt-5">Select your favourite country</label>
+                            <select multiple class="form-control select-country-box mt-4 p-2" name="country" required>
+                                {{#each country_list}}
+                                    <option class="p-2" value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                            <input type="submit" value="Submit" class="btn btn-danger mt-4">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 mt-3 d-flex flex-row justify-content-center">
+                    <div id="fav-country-list" class="col-7">
+                        {{#each fav_countries}}
+                            {{#if this.red}}
+                                <div class="fav-country-item py-3 red-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
+                                    {{this.name}}
+                                </div>
+                            {{else}}
+                                {{#if this.isGreen}}
+                                    <div class="fav-country-item py-3 green-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
+                                        {{this.name}}
+                                    </div>
+                                {{else}}
+                                    <div class="fav-country-item py-3 amber-fav-country" data-bs-toggle="modal" data-bs-target="#{{this.id}}">
+                                        {{this.name}}
+                                    </div>
+                                {{/if}}
+                            {{/if}}
+                        {{/each}}
 
-<form id="fav-country-form" action="/profile/addCountry" method="post">
-  <label for="fav-country">Select your favorite country</label>
-  <select name="country" size="10" required>
-    {{#each country_list}}
-      <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
-  <input type="submit" value="Submit">
-</form>
+                        <form id="remove-country-form" action="/profile/removeFav" method="post">
+                            <select name='favCountry'>
+                                {{#each fav_countries}}
+                                <option value="{{this.name}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                            <input type="submit" value="Remove">
+                        </form>
+                    </div>
 
-<div id="fav-country-list">
-  <h2>{{username}}'s selected favorite countries</h2>
-  {{fav_countries}}
-</div>
+            </div>
+            <!-- Favourites modal -->
+            {{#each fav_countries}}
+            <div class="modal fade" id="{{this.id}}" tabindex="-1" aria-labelledby="exampleLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleTitle">{{this.name}}</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>{{this.colour}} list:</h5>
 
-{{#if fav_countries}}
+                        {{#if this.red}}
+                        <div>
+                            <p>If you have been in a country or territory on the red list in the last 10 days you will only be 
+                                allowed to enter the UK if you are a British or Irish National, 
+                                or you have residence rights in the UK. You must follow these rules even if you have been fully vaccinated.</p>
+                            <h6>Before you travel to England you must:</h6>
+                            <ol>
+                                <li>Take a COVID-19 test – children aged 10 and under do not need to take this test</li>
+                                <li>Book a quarantine hotel package, including two COVID-19 tests</li>
+                                <li>complete a passenger locator form</li>
+                            </ol>
+                            <h6>On arrival in England:</h6>
+                            <p>You must quarantine in a managed hotel, including 2 COVID-19 tests.</p>
+                        </div>
+                        {{else}}
+                            {{#if this.isGreen}}
+                                <div>
+                                    <p>You must only have been in or travelled through a green list country or the UK, Ireland, the Channel Islands or the Isle of Man in the previous 10 days.  
+                                    You must follow these rules even if you have been fully vaccinated.</p>
+                                    <h6>Before you travel to England you must:</h6>
+                                    <ol>
+                                        <li>Take a COVID-19 test – children aged 10 and under do not need to take this test</li>
+                                        <li>Book and pay for a day 2 COVID-19 test – to be taken after arrival in England</li>
+                                        <li>complete a passenger locator form</li>
+                                    </ol>
+                                    <h6>On arrival in England:</h6>
+                                    <ol>
+                                    <li>You must take a COVID-19 test on or before day 2 after you arrive. 
+                                        Children aged 4 and under do not need to take this test.</li>
+                                    <li>You do not need to quarantine unless the test result is positive.</li>
+                                    <li>You must quarantine if NHS Test and Trace informs you that you travelled to England with someone who has tested positive for COVID-19.</li>
+                                    </ol>
+                                </div>
+                            {{else}}
+{{!-- {{#if fav_countries}}
 <form id="remove-country-form" action="/profile/removeFav" method="post">
   <select name='favCountry'>
     {{#each fav_countries}}
@@ -139,7 +334,35 @@
   </select>
   <input type="submit" value="Remove">
 </form>
-{{/if}}
+{{/if}} --}}
 
+                                <h6>Before you travel to England you must:</h6>
+                                
+                                <ol>
+                                    <li>Take a COVID-19 test – you must take the test in the 3 days before you travel to England</li>
+                                    <li>Book and pay for COVID-19 tests – to be taken after arrival in England</li>
+                                    <li>Complete a passenger locator form</li>
+                                </ol>
+
+                                <h6>On arrival in England you must:</h6>
+                                <ol>
+                                    <li>Quarantine at home or in the place you are staying for 10 days</li>
+                                    <li>take a COVID-19 test on or before day 2 and on or after day 8</li>
+                                </ol>
+                                <h6>You do not need to quarantine or take a day 8 test after you arrive in England if you are fully vaccinated in the UK</h6>
+                                <p>You must have had your final dose of the vaccine at least 14 whole days before the date you arrive in England. You still need to book and take a day 2 test.</p>
+                        
+                        {{/if}}
+                    {{/if}}
+                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 
 </div>

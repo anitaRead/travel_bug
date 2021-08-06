@@ -195,6 +195,58 @@ body {
     filter: brightness(100%);
 }
 
+#favourites-section {
+    margin-top: 20vh;
+    height: 100vh;
+}
+
+.fav-form-style {
+    height: 400px;
+    width: 40rem; 
+}
+
+.select-country-box {
+    height: 200px;
+}
+
+.fav-country-item {
+    margin-top: 2%;
+    border: 1px solid #d3d3d3;
+}
+
+.green-fav-country {
+    color: #F5F5F5;
+    font-weight: 700;
+    background-color: #5cb85c;
+    border-radius: 15px;
+}
+
+.green-fav-country:hover {
+    border: 1px solid green;
+}
+
+.amber-fav-country {
+    color: #F5F5F5;
+    font-weight: 700;
+    background-color: #f0ad4e;
+    border-radius: 15px;
+}
+
+.amber-fav-country:hover {
+    border: 1px solid orange;
+}
+
+.red-fav-country {
+    color: #F5F5F5;
+    font-weight: 700;
+    background-color: #d9534f;
+    border-radius: 15px;
+}
+
+.red-fav-country:hover {
+    border: 1px solid red;
+}
+
 /* Edit profile page */
 
 .edit-profile-page {
@@ -204,12 +256,6 @@ body {
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-}
-
-.user-info {
-    margin-top: 20vh;
-    color: #fff;
-    font-weight: 700;
 }
 
 .editpic {
@@ -224,7 +270,6 @@ body {
 /* #username-form {
     display: none;
 } */
-
 
 /* Media queries for mobile */
 

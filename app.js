@@ -7,6 +7,7 @@ var session = require('express-session');
 // var { getCode, getName } = require('country-list');
 
 
+
 var homeRouter = require('./routes/home');
 var sessionsRouter = require('./routes/sessions');
 var signUpRouter = require('./routes/signUp');
@@ -26,13 +27,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({key: 'user_sid', secret: 'somerandonstuffs', resave: false, saveUninitialized: false,
   cookie: {expires: 600000}
 }));
-
-// app.use((req, res, next) => {
-//   if (req.cookies.user_sid && !req.session.user) {
-//     res.clearCookie('user_sid');
-//   }
-//   next();
-// });
 
 var sessionChecker = (req, res, next) => {
   if (req.session.user_sid)

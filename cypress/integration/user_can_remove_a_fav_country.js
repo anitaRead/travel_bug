@@ -16,10 +16,10 @@ describe('Profile page', function() {
     cy.get('#fav-country-form').submit();
     cy.get('#fav-country-list').contains('Andorra');
 
-    cy.get('#remove-country-form').find('[name = "favCountry"]').select('Andorra');
-    cy.get('#remove-country-form').submit();
+    cy.get('#reset-button').click({force: true});
 
-    cy.get('#fav-country-list').contains('Andorra').should('not.exist');
+    cy.get('.fav-country-item').should('not.exist');
+
 
   });
 });

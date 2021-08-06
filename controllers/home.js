@@ -3,6 +3,7 @@ var https = require('https');
 var countryList = require('country-list');
 var jsdom = require("jsdom");
 
+
 var HomeController = {
   Index: function(req, res) {
 
@@ -33,9 +34,9 @@ var HomeController = {
   Create: function(req, res) {
 
     var user = new User(req.body);
-    console.log(user);
+   
     var username = user.username;
-    console.log(username);
+  
 
     User.findOne({username: username}, function(err, newUser) {
       if(!newUser){
@@ -157,19 +158,36 @@ var HomeController = {
           var tableRows = table.getElementsByTagName("tbody")[0].children;
 
           for(var i=0; i<tableRows.length; i++){
-            countries.push(tableRows[i].firstElementChild.textContent);
+            var countryName = tableRows[i].firstElementChild.textContent;
+            var countryId = countryName.replace(/[^A-Z0-9]/ig, "");
+            var colour = "";
+            var isGreen = false;
+            if(tableNumber === 2) {
+              colour = "Green";
+              isGreen = true;
+            } else if (tableNumber === 1){
+              colour = "Amber";
+              isGreen = false;
+            } else {
+              colour = "Red";
+              isGreen = false;
+            }
+            
+            var countryObj = { id: countryId, name: countryName, colour: colour, isGreen: isGreen};
+            countries.push(countryObj);
           }
 
           return countries;
         }
 
+
         var greenList = getCountries(doc, 2);
         var amberList = getCountries(doc, 1);
         var noFlyList = ["Afghanistan", "Burkina Faso", "Central African Republic", "Haiti", "Iran", "Iraq", "Libya", "Mali",
-        "North Korea", "Mali", "Somalia", "South Sudan", "Syria", "Venezuela", "Yemen", "El Salvador", "Chad", "Honduras",
-        "Nicaragua", "Congo", "Congo (Democratic Republic)", "The Occupied Palestinian Territories", "Sudan", "Sudan", "Niger",
-        "Mozambique", "Ethiopia", "Eritrea", "Cameroon", "Pakistan", "Myanmar", "Ukraine", "Belarus", "Colombia", "Eswatini",
-        "Liberia", "Jordan"]
+        "North Korea", "Mali", "Somalia", "South Sudan", "Syria", "Venezuela", "Yemen", "El Salvador", "Chad", "Honduras", 
+        "Nicaragua", "Congo", "Congo (Democratic Republic)", "The Occupied Palestinian Territories", "Sudan", "Niger", 
+        "Mozambique", "Ethiopia", "Eritrea", "Cameroon", "Pakistan", "Myanmar", "Ukraine", "Belarus", "Colombia", "Eswatini", 
+        "Liberia", "Jordan", "Antarctica/British Antarctic Territory"]
 
         function getTopSix(countries){
           var randArr = [];
@@ -178,7 +196,7 @@ var HomeController = {
           while(randArr.length < 6){
             var rand =  Math.floor(Math.random() * countries.length);
             if(!randArr.includes(rand)) {
-              if(!noFlyList.includes(countries[rand])){
+              if(!noFlyList.includes(countries[rand].name)){
                 randArr.push(rand);
                 topSix.push(countries[rand]);
               }
@@ -195,20 +213,56 @@ var HomeController = {
           var email = user.email;
           var vaccination_status = user.vaccination_status;
           var url = gravatar.url(email, {s: '100', r: 'x', d: 'retro'}, false);
-          var countryListNames = countryList.getNames();
+          var countryListNames = countryList.getNames().sort();
           var fc = user.fav_countries;
+          
 
-          if(user.vaccination_status === "vaccinated") {
+          function getFavCountries(fc, green, amber){
+            var countries = [];
+            var greenArr = [];
+            green.forEach(country => greenArr.push(country.name));
+            var amberArr = [];
+            amber.forEach(country => amberArr.push(country.name));
+            
+
+            for(let i=0; i<fc.length; i++){
+              var countryId = fc[i].replace(/[^A-Z0-9]/ig, "");
+              var colour = "";
+              var isGreen = false;
+              var red = false;
+
+              if(greenArr.includes(fc[i])){
+                colour = "Green";
+                isGreen = true;
+              } else if(amberArr.includes(fc[i])){
+                colour = "Amber";
+                isGreen = false;
+              } else {
+                colour = "Red";
+                red = true;
+              }
+
+              var countryObj = { id: countryId, name: fc[i], colour: colour, isGreen: isGreen, red: red};
+              countries.push(countryObj);
+            }
+            return countries;
+            
+          }
+
+          if(vaccination_status === "Vaccinated") {
             isVaxed = true;
           } else {
             isVaxed = false;
           }
 
+
           var vaxList = getTopSix(greenList.concat(amberList));
           var unvaxList = getTopSix(greenList);
 
-
-          res.render('home/profile', { username: username, vaccination_status: vaccination_status, vaxList: vaxList, unvaxList: unvaxList, isVaxed: isVaxed, url: url, country_list: countryListNames, fav_countries: fc});
+          var favCountries = getFavCountries(fc, greenList, amberList);
+        
+          res.render('home/profile', { username: username, vaccination_status: vaccination_status, vaxList: vaxList, unvaxList: unvaxList, 
+            isVaxed: isVaxed, url: url, country_list: countryListNames, fav_countries: favCountries});
 
         });
       })
@@ -240,8 +294,7 @@ var HomeController = {
       res.status(201).redirect('/profile');
     })
   },
-
-
+  
   EditPage: function(req, res) {
     var gravatar = require('gravatar');
 
@@ -269,7 +322,6 @@ var HomeController = {
   },
   EditVaccine: function(req, res){
     var vaccination_status = req.body.vaccination_status
-    console.log(req.body)
 
     var userID = req.session.user_sid
     User.updateOne({_id: userID}, {"vaccination_status": vaccination_status}, function(err){
